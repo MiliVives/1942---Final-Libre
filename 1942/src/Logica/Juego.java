@@ -44,7 +44,7 @@ public class Juego implements Runnable {
 	private Nivel nivelActual;
 	private Ranking ranking;
 
-	private boolean[] powerUps;
+	private boolean powerUpTemporal;
 
 	/**
 	 * El constructor es privado para que funcione el patron singleton
@@ -53,15 +53,12 @@ public class Juego implements Runnable {
 		juego = this;
 		moviendoIzquierda = false;
 		moviendoDerecha = false;
-		disparando = false;
+ 		disparando = false;
 		ranking = new Ranking("src/ArchivosDeTexto/Ranking.txt");
 		entidades = new LinkedList<Entidad>();
 		aEliminar = new LinkedList<Entidad>();
 		aAgregar = new LinkedList<Entidad>();
-		powerUps = new boolean[4];
-		for (int i = 0; i < 4; i++) {
-			powerUps[i] = false;
-		}
+		powerUpTemporal = false;
 
 	}
 
@@ -174,7 +171,7 @@ public class Juego implements Runnable {
 		gui.actualizarPuntos(jugador.getPuntos());
 		gui.actualizarVida(jugador.getVidas());
 		LabelJugador labelJugador=(LabelJugador)jugador.getGrafico();
-		labelJugador.setPowerUp(powerUps);
+		labelJugador.setPowerUp(powerUpTemporal);
 	}
 
 	private void detectarColisiones() {
@@ -284,8 +281,8 @@ public class Juego implements Runnable {
 		return jugando;
 	}
 
-	public boolean getEstadoPremio(int valorPremio) {
-		return powerUps[valorPremio];
+	public boolean getEstadoPremio() {
+		return powerUpTemporal;
 	}
 	
 	public void sumarPuntos(int p) {

@@ -107,6 +107,7 @@ public abstract class Enemigo extends Entidad {
 			juego.sumarPuntos(puntos);
 			muerto = true;
 		}
+		eliminar();
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			public void run() {

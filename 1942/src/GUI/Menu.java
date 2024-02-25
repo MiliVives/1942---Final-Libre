@@ -52,9 +52,11 @@ public class Menu extends JFrame {
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
 
-		JButton botonNormal = new JButton("");
+		JButton botonNormal = 
+				new JButton("");
 		botonNormal.setBorder(new LineBorder(Color.BLACK));
-		botonNormal.setBackground(new Color(0, 255, 0));
+		botonNormal.setBackground(Color.BLACK);
+		botonNormal.setBorder(new EmptyBorder(0, 0, 0, 0)); 
 		botonNormal.setIcon(new ImageIcon(Menu.class.getResource("/RecursosGraficos_Extras/start.gif")));
 		// botonNormal.setOpaque(true);
 		botonNormal.addActionListener(new ActionListener() {
@@ -66,7 +68,7 @@ public class Menu extends JFrame {
 				dispose();
 			}
 		});
-		botonNormal.setBounds(20, 250, 200, 93);
+		botonNormal.setBounds(491, 546, 417, 53);
 		contentPane.add(botonNormal);
 		
 		JButton botonRanking = new JButton("");
@@ -81,12 +83,19 @@ public class Menu extends JFrame {
 			 	//dispose
 			}
 		});
-		botonRanking.setBounds(750, 250, 150, 93);
+		botonRanking.setBounds(817, 11, 91, 65);
 		contentPane.add(botonRanking);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(Menu.class.getResource("/RecursosGraficos_Extras/1942.png")));
+		lblNewLabel_1.setBounds(339, 51, 249, 72);
+		lblNewLabel_1.setEnabled(true);
+		contentPane.add(lblNewLabel_1);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Menu.class.getResource("/RecursosGraficos_Extras/fondo.gif")));
 		lblNewLabel.setBounds(100, 0, 932, 647);
+		lblNewLabel.setOpaque(false);
 		contentPane.add(lblNewLabel);
 
 	}
@@ -94,5 +103,4 @@ public class Menu extends JFrame {
 	public void frameVentanaClosed() {
 		this.getContentPane().requestFocus();
 	}
-
 }

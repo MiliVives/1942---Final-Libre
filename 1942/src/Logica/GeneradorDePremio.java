@@ -16,7 +16,7 @@ public class GeneradorDePremio {
 
 	
 	private static final int cantidadPremiosTemporales=1;
-	private static final int cantidadPremios=7;
+	private static final int cantidadPremios=5;
 	
 	/**
 	 * metodo que crea un premio, es llamado de forma estatica
@@ -25,7 +25,7 @@ public class GeneradorDePremio {
 		Random r= new Random();
 		int indice=r.nextInt(cantidadPremios);
 		Juego juego=Juego.getJuego();
-		while(indice<cantidadPremiosTemporales && juego.getEstadoPremio(indice)) {
+		while(indice<cantidadPremiosTemporales && juego.getEstadoPremio()) {
 			//se chequea que no se cree un premio temporal que ya este activado
 			indice=r.nextInt(cantidadPremios);
 		}

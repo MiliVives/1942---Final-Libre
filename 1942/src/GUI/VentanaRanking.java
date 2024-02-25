@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -50,8 +51,11 @@ public class VentanaRanking extends JFrame{
 		panelJuego.moveToBack(fondoJuego);
 
 
-		JPanel labelsPanel = new JPanel(new GridBagLayout());
+		JPanel labelsPanel = new JPanel();
+		labelsPanel.setLayout(new GridBagLayout());
 		labelsPanel.setOpaque(false); // Make the panel transparent
+
+
 
 		// Add headers
 		JLabel headerPosicion = new JLabel("Posición");

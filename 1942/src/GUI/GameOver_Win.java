@@ -66,6 +66,12 @@ public class GameOver_Win extends JFrame {
 		salir.setBorder(new EmptyBorder(0, 0, 0, 0)); 
 		contentPane.add(salir);
 		
+		JLabel gameOverL = new JLabel("");
+		gameOverL.setIcon(new ImageIcon(GameOver_Win.class.getResource("/RecursosGraficos_Extras/gameOver"+p+".png")));
+		gameOverL.setBounds(213, 77, 499, 70);
+		gameOverL.setEnabled(true);
+		contentPane.add(gameOverL);
+		
 		JLabel gameOver = new JLabel("");
 		gameOver.setIcon(new ImageIcon(GameOver_Win.class.getResource("/RecursosGraficos_Extras/endpage1.gif")));
 		gameOver.setOpaque(false);

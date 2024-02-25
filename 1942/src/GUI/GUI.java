@@ -26,7 +26,7 @@ public class GUI extends JFrame {
 	private FondoPanel panelJuego;
 	private Juego juego;
 	private Thread hiloJuego;
-	private JLabel cargaViral, cargaViralMaxima, nivelTanda, vidas;
+	private JLabel nivelTanda;
 	private JLabel[] estados;
 	private JLabel fondoJuego;
 	
@@ -104,29 +104,6 @@ public class GUI extends JFrame {
 		
 
 		barraSuperior.add(panelMejoras);
-/*		
-		cargaViral = new JLabel();
-		cargaViral.setBackground(new Color(51, 91, 17));
-		cargaViral.setBounds(10, 11, 0, 38);
-		cargaViral.setOpaque(true);
-		cargaViral.setBorder(new LineBorder(Color.BLACK, 2));
-		barraSuperior.add(cargaViral);
-
-		cargaViralMaxima = new JLabel();
-		cargaViralMaxima.setBackground(new Color(242, 78, 133));
-		cargaViralMaxima.setBounds(10, 11, 500, 38);
-		cargaViralMaxima.setOpaque(true);
-		cargaViralMaxima.setBorder(new LineBorder(Color.BLACK, 2));
-		barraSuperior.add(cargaViralMaxima);
-
-*/
-		/*
-		nivelTanda = new JLabel("");
-		nivelTanda.setIcon(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/NivelTanda/nivel1tanda1.png")));
-
-		nivelTanda.setBounds(520, 0, 95, 60);
-		barraSuperior.add(nivelTanda);
-		*/
 
 		this.setFocusable(true);
 
