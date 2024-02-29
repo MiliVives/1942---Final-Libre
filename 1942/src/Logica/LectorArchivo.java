@@ -14,7 +14,7 @@ public class LectorArchivo {
 
 	String rutaArchivo = "ArchivosDeTexto/Generacion.txt";
 
-	private int cantTiposEnemigos = 2; //VER DE CAMBIAR CANTIDAD ENEEMIGOS
+	private int cantTiposEnemigos = 7; //VER DE CAMBIAR CANTIDAD ENEEMIGOS
 	private int cantTandas = 6;
 
 	/**
@@ -58,5 +58,5 @@ public class LectorArchivo {
 			e.printStackTrace();
 		}
 		return toReturn;
-	}
+	}	
 }

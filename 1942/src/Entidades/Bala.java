@@ -22,4 +22,8 @@ public abstract class Bala extends Proyectil {
 	public int getRango() {
 		return rango;
 	}
+	
+	public void setDaño(int d) {
+		damage = d;
+	}
 }

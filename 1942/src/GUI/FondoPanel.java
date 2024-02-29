@@ -8,8 +8,8 @@ import java.awt.Component;
 class FondoPanel extends JLayeredPane {
 
 
-	private String[] nivelesTransicion = new String[] { "/RecursosGraficosNiveles/LVL01.png",
-			"/RecursosGraficosNiveles/LVL02.png", "/RecursosGraficosNiveles/LVL03.png" };
+	private String[] nivelesTransicion = new String[] { "/RecursosGraficosNiveles/LVL01.gif",
+			"/RecursosGraficosNiveles/LVL02.gif", "/RecursosGraficosNiveles/LVL03.gif" };
 	private JLabel nivelTransicionLabel;
 
 	public FondoPanel() {

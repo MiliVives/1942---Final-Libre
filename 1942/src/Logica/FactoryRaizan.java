@@ -23,7 +23,7 @@ public class FactoryRaizan extends Factory {
 	}
 
 	private Point posicion() {
-		return new Point(r.nextInt(mapa.getWidth() - 60), -100); //CAMBIAR POSICION SPAWN
+		return new Point(r.nextInt(mapa.getWidth() - 60), mapa.getHeight()+100); //CAMBIAR POSICION SPAWN
 	}
 
 	@Override

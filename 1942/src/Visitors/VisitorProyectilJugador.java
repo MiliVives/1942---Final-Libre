@@ -3,10 +3,12 @@ package Visitors;
 import Entidades.Bala;
 import Entidades.Daihiryu;
 import Entidades.Entidad;
+import Entidades.Fukusuke;
 import Entidades.ProyectilJugador;
 import Entidades.Qing;
 import Entidades.Raizan;
 import Entidades.Shoryu;
+import Entidades.Zero;
 
 public class VisitorProyectilJugador extends Visitor{
 
@@ -33,6 +35,18 @@ public class VisitorProyectilJugador extends Visitor{
 	}
 	
 	public void visit(Shoryu i) {
+		ProyectilJugador e = (ProyectilJugador) entidad;		
+		e.eliminar();     
+		i.disminuirVida(e.getDamage());		
+	}
+	
+	public void visit(Fukusuke i) {
+		ProyectilJugador e = (ProyectilJugador) entidad;		
+		e.eliminar();     
+		i.disminuirVida(e.getDamage());		
+	}
+	
+	public void visit(Zero i) {
 		ProyectilJugador e = (ProyectilJugador) entidad;		
 		e.eliminar();     
 		i.disminuirVida(e.getDamage());		

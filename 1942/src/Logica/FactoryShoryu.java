@@ -23,8 +23,8 @@ public class FactoryShoryu extends Factory {
 	}
 
 	private Point posicion() {
-		return new Point(r.nextInt(mapa.getWidth() - 60), -100); //CAMBIAR POSICION SPAWN
-	}
+		return new Point(360, -100); //CAMBIAR POSICION SPAWN
+	}//r.nextInt(mapa.getWidth() - 60
 
 	@Override
 	protected void reiniciar() {

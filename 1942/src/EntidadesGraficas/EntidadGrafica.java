@@ -10,7 +10,8 @@ import Logica.Juego;
 public abstract class EntidadGrafica extends JLabel {
 
 	public EntidadGrafica() {
-		Juego.getJuego().getMapa().add(this);
+		if(Juego.getJuego().getMapa() != null)
+			Juego.getJuego().getMapa().add(this);
 	}
 	
 	public void reDimensionar(JLabel label, ImageIcon grafico) {

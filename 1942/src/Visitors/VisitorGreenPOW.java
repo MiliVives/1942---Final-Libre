@@ -2,6 +2,7 @@ package Visitors;
 
 import Entidades.Entidad;
 import Entidades.Jugador;
+import EstadosArma.ConArmaMortal;
 
 public class VisitorGreenPOW extends VisitorPremioEspecial {
 
@@ -10,9 +11,8 @@ public class VisitorGreenPOW extends VisitorPremioEspecial {
 	}
 	
 	public void visit(Jugador jugador) {
+	//	jugador.setEstadoArma(new ConArmaMortal(jugador));
 		entidad.eliminar();
-		//incrementarle daño al arma
-		//ver si hacer un proyectil nuevo o arma
 	}
 
 }

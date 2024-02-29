@@ -19,6 +19,7 @@ public class BuilderDefault extends BuilderNivel {
 		misFabricas.add(new FactoryShoryu());
 		misFabricas.add(new FactoryFukusuke());
 		misFabricas.add(new FactoryZero());
+		misFabricas.add(new FactoryEntidadesDecoracion());
 		
 		nivelesCreados = 0;
 		tandaActual = new Tanda();
@@ -37,6 +38,8 @@ public class BuilderDefault extends BuilderNivel {
 		// tipoEnemigo debe coincidir con un indice valido de la lista de fabricas.
 		// el tipo i es creado por la fabrica i
 		Enemigo ene = misFabricas.get(tipoEnemigo).crearEnemigo(!primerTanda);
+		if(ene == null)
+			System.out.println("NULO");
 		tandaActual.agregarEnemigo(ene);
 	}
 

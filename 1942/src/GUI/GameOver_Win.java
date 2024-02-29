@@ -4,26 +4,41 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
+
+import Logica.Ranking;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
-public class GameOver_Win extends JFrame {
+public class GameOver_Win extends JFrame implements Disposable{
 
 	private JPanel contentPane;
-	private int pantalla;
+	private Ranking ranking;
 	
 	/**
 	 * Create the frame.
 	 */
-	public GameOver_Win( int p ) {// si es 1 entonces gano, 0 caso contrario :)
+	public GameOver_Win(int p, int puntaje) {// si es 1 entonces gano, 0 caso contrario :)
 		
-		this.pantalla = p;
-		
+		ranking = new Ranking("src/ArchivosDeTexto/Ranking.txt");
 		setIconImage(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/icon.png")).getImage());
 		
 		this.setResizable(false);
@@ -31,7 +46,6 @@ public class GameOver_Win extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 932, 647);
 		contentPane = new JPanel();
-		setAlwaysOnTop(true);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -51,6 +65,7 @@ public class GameOver_Win extends JFrame {
 		tryAgain.setIcon(new ImageIcon(GameOver_Win.class.getResource("/RecursosGraficos_Extras/start.png")));
 		tryAgain.setBounds(459, 527, 198, 49);
 		reDimensionar(tryAgain, (ImageIcon) tryAgain.getIcon());
+		tryAgain.setEnabled(false);
 		contentPane.add(tryAgain);
 		
 		JButton salir = new JButton("");
@@ -64,13 +79,54 @@ public class GameOver_Win extends JFrame {
 		salir.setIcon(new ImageIcon(GameOver_Win.class.getResource("/RecursosGraficos_Extras/exit.png")));
 		salir.setBounds(669, 527, 184, 49);
 		salir.setBorder(new EmptyBorder(0, 0, 0, 0)); 
+		salir.setEnabled(false);
 		contentPane.add(salir);
+		
+		JButton botonRanking = new JButton("");
+		botonRanking.setBorder(new LineBorder(Color.BLACK));
+		botonRanking.setBackground(new Color(0, 0, 0));
+		botonRanking.setIcon(new ImageIcon(Menu.class.getResource("/RecursosGraficos_Extras/ranking.png")));
+		botonRanking.setEnabled(false);
+		botonRanking.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				VentanaRanking rankingWindow = new VentanaRanking(GameOver_Win.this);
+			 	rankingWindow.setVisible(true);
+			 	//dispose
+			}
+		});
+		botonRanking.setBounds(817, 11, 91, 65);
+		contentPane.add(botonRanking);
 		
 		JLabel gameOverL = new JLabel("");
 		gameOverL.setIcon(new ImageIcon(GameOver_Win.class.getResource("/RecursosGraficos_Extras/gameOver"+p+".png")));
 		gameOverL.setBounds(213, 77, 499, 70);
 		gameOverL.setEnabled(true);
 		contentPane.add(gameOverL);
+		
+		JTextField miBox = new JTextField(20);
+		miBox.setFont(new java.awt.Font("Arial", Font.ITALIC | Font.BOLD, 16));
+		miBox.setText("Ingrese su nombre");
+		miBox.setForeground(Color.BLACK);
+		miBox.setEditable(true);
+		miBox.setEnabled(true);
+		miBox.setVisible(true);
+		miBox.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent event) {
+		        String nombre = miBox.getText();
+		        tryAgain.setEnabled(true);
+		        salir.setEnabled(true);
+		        ranking.addPlayer(nombre, puntaje);
+		        botonRanking.setEnabled(true);
+		    }
+		});
+		
+		JPanel panelBox = new JPanel();
+		panelBox.setLayout(new FlowLayout());
+		panelBox.setBounds(300, 180, 300, 60); // Adjust the bounds as needed
+		panelBox.add(miBox);
+		panelBox.setOpaque(false);
+		contentPane.add(panelBox);
+		
 		
 		JLabel gameOver = new JLabel("");
 		gameOver.setIcon(new ImageIcon(GameOver_Win.class.getResource("/RecursosGraficos_Extras/endpage1.gif")));
@@ -89,5 +145,9 @@ public class GameOver_Win extends JFrame {
 			boton.setIcon(grafico);
 			boton.repaint();
 		}
+	}
+	
+	public void frameVentanaClosed() {
+		this.getContentPane().requestFocus();
 	}
 }

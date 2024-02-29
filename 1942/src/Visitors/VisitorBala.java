@@ -14,6 +14,7 @@ public class VisitorBala extends Visitor{
 		Proyectil p = (Proyectil) entidad;
 		p.eliminar();
 		j.decrementarVidas();
+		j.decrementarVidas(); //resta mas vida que el resto
 	}
 
 }

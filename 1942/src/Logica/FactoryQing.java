@@ -18,12 +18,12 @@ public class FactoryQing extends Factory {
 	public Enemigo crearEnemigo(boolean enEspera) {
 		Point p = posicion();
 		Enemigo ene = new Qing(p, tiempo, enEspera);
-		tiempo = tiempo + 5000;// cada enemigo aparecera con una diferencia de 5 segundos
+		tiempo = tiempo + 1000;// cada enemigo aparecera con una diferencia de 5 segundos
 		return ene;
 	}
 
 	private Point posicion() {
-		return new Point(r.nextInt(mapa.getWidth() - 60), -100); //CAMBIAR POSICION SPAWN
+		return new Point(150, mapa.getHeight()+100); //CAMBIAR POSICION SPAWN
 	}
 
 	@Override

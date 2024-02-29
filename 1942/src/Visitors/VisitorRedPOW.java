@@ -11,7 +11,7 @@ public class VisitorRedPOW extends VisitorPremioEspecial {
 	
 	public void visit(Jugador jugador) {
 		entidad.eliminar();
-		jugador.sumarPuntos(1000);
+		jugador.setPuntos(1000);
 	}
 
 }

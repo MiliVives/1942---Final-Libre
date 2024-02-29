@@ -1,10 +1,16 @@
 package Entidades;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import EntidadesGraficas.LabelJugador;
 import EstadosArma.ConArmaNormal;
 import EstadosArma.EstadoArma;
+import EstadosArma.SinArma;
 import EstadosJugador.EstadoInicial;
+import EstadosJugador.EstadoInmune;
 import EstadosJugador.EstadoJugador;
+import EstrategiasMovimiento.EliminarTotal;
 import EstrategiasMovimiento.Horizontal;
 import EstrategiasMovimiento.Vertical;
 import Visitors.Visitor;
@@ -13,9 +19,12 @@ public class Jugador extends Entidad {
 	protected EstadoArma estado_arma;
 	protected EstadoJugador estado_jugador;
 	protected int vidas, tiros, puntos;
+	protected AvionLateral avionDerecho, avionIzquierdo;
 
 	public Jugador() {
 		super(new LabelJugador());
+		avionDerecho = null;
+		avionIzquierdo = null;
 		movimiento = new Horizontal(this, Horizontal.DERECHA);
 		estado_arma = new ConArmaNormal(this);
 		estado_jugador = new EstadoInicial(this);
@@ -26,10 +35,6 @@ public class Jugador extends Entidad {
 
 	public void setVisitor(Visitor visitor) {
 		this.visitor = visitor;
-	}
-	
-	public void sumarPuntos(int points) {
-		puntos+=points;
 	}
 
 	public int getVidas() {
@@ -82,6 +87,39 @@ public class Jugador extends Entidad {
 				juego.seDisparo();
 			}
 		}
+		
+		if(juego.getDiveo()) {
+			setEstadoJugador(new EstadoInmune(this));
+			setEstadoArma(new SinArma(this));
+			((LabelJugador) entidad_graf).setDiveo(true);
+			Timer timer = new Timer();
+			timer.schedule(new TimerTask() {
+				public void run() {
+					setEstadoJugador(new EstadoInicial(Jugador.this));
+					setEstadoArma(new ConArmaNormal(Jugador.this));
+					((LabelJugador) entidad_graf).setDiveo(false);
+					timer.cancel();
+				}
+
+			}, 3 * 1000);
+
+		}
+	}
+		
+	public void CrearNavesLaterales() {
+		if(avionDerecho == null)
+			avionDerecho = new AvionLateral(this,1);
+			
+		if(avionIzquierdo == null)
+			avionIzquierdo = new AvionLateral(this,-1);
+	}
+	
+	private void creacion() {
+		if(avionDerecho == null)
+			avionDerecho = new AvionLateral(this,1);
+			
+		if(avionIzquierdo == null)
+			avionIzquierdo = new AvionLateral(this,-1);
 	}
 
 	public void accept(Visitor visitor) {

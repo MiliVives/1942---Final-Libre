@@ -18,11 +18,10 @@ public class VisitorOrangePOW extends VisitorPremioTemporal{
 	}
 	
 	public void visit(Jugador jug) {
-		//hacer algo temporalmente --> inmunidad es una buena opcion
-		/*
+		
 		EstadoJugador estado_actual = jug.getEstadoJugador();
 		jug.setEstadoJugador(new EstadoInmune(jug));
-		PremioTemporal p=(PremioTemporal) entidad;
+		PremioTemporal p = (PremioTemporal) entidad;
 		entidad.eliminar();
 		Timer timer = new Timer();
 		TimerTask timer_task = new TimerTask() {
@@ -34,9 +33,6 @@ public class VisitorOrangePOW extends VisitorPremioTemporal{
 			};
 		};
 		timer.schedule(timer_task, this.duracion, 1);
-		
-	}
-	*/
 		
 	}
 }

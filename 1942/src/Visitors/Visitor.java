@@ -3,9 +3,12 @@ package Visitors;
 import Entidades.Bala;
 import Entidades.Daihiryu;
 import Entidades.Entidad;
+import Entidades.EntidadesDecoracion;
 import Entidades.Fukusuke;
 import Entidades.Jugador;
+import Entidades.ProyectilMortal;
 import Entidades.ProyectilNormal;
+import Entidades.ProyectilNormalLateral;
 import Entidades.Qing;
 import Entidades.Raizan;
 import Entidades.Shoryu;
@@ -76,6 +79,18 @@ public abstract class Visitor {
 	}
 
 	public void visit(Zero zero) {
+		
+	}
+
+	public void visit(ProyectilMortal proyectilMortal) {
+		
+	}
+
+	public void visit(EntidadesDecoracion entidadesDecoracion) {
+		
+	}
+
+	public void visit(ProyectilNormalLateral proyectilNormalLateral) {
 		
 	}
 }

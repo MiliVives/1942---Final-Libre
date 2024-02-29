@@ -34,6 +34,9 @@ public class OyenteTeclado implements KeyListener {
 		if (codigoTecla == KeyEvent.VK_SPACE) {
 			juego.setDisparando(true);
 		}
+		if (codigoTecla == KeyEvent.VK_ENTER) {
+			juego.setDiveo(true);
+		}
 	}
 
 	@Override
@@ -53,6 +56,9 @@ public class OyenteTeclado implements KeyListener {
 		}
 		if (codigoTecla == KeyEvent.VK_SPACE) {
 			juego.setDisparando(false);
+		}
+		if(codigoTecla == KeyEvent.VK_ENTER) {
+			juego.setDiveo(false);
 		}
 
 	}

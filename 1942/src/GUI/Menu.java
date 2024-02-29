@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
-public class Menu extends JFrame {
+public class Menu extends JFrame implements Disposable{
 
 	private JPanel contentPane;
 

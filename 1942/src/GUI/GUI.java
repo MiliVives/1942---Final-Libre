@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,6 +30,8 @@ public class GUI extends JFrame {
 	private JLabel nivelTanda;
 	private JLabel[] estados;
 	private JLabel fondoJuego;
+	Clip musica;
+	Clip disparo;
 	
 	/**
 	 * Crea el mapa de juego
@@ -54,7 +57,9 @@ public class GUI extends JFrame {
 		contentPane.add(panelJuego);
 		
 		fondoJuego = new JLabel("New label");
-		fondoJuego.setIcon(new ImageIcon(GUI.class.getResource("/RecursosGraficosNiveles/FONDO-LVL01.png")));
+		URL imageUrl = getClass().getResource("/RecursosGraficosNiveles/fondo.gif");
+		ImageIcon gifIcon = new ImageIcon(imageUrl);
+		fondoJuego.setIcon(gifIcon);
 		fondoJuego.setBounds(0, 0, 933,601);
 		reDimensionar(fondoJuego, (ImageIcon) fondoJuego.getIcon());
 		panelJuego.add(fondoJuego);
@@ -148,26 +153,28 @@ public class GUI extends JFrame {
 	/**
 	 * Se crea abre un nuevo frame donde se muestra que se gano el juego
 	 */
-	public void gano() {
-		
-		GameOver_Win win = new GameOver_Win(1);
+	public void gano(int puntaje) {
+		this.juego = null;
+		musica.stop();
+		musicaGO(1);
+		GameOver_Win win = new GameOver_Win(1, puntaje);
 		hiloJuego = null;
 		this.panelJuego = null;
 		this.dispose();
-		this.juego = null;
 		win.setVisible(true);
-		
 	}
 
 	/**
 	 * Se crea abre un nuevo frame donde se muestra que se perdio el juego
 	 */
-	public void perdio() {
+	public void perdio(int puntaje) {
 		this.juego = null;
 		hiloJuego = null;
 		this.panelJuego = null;
 		this.dispose();
-		GameOver_Win go = new GameOver_Win(0);
+		musica.stop();
+		musicaGO(0);
+		GameOver_Win go = new GameOver_Win(0, puntaje);
 		go.setVisible(true);
 		
 	}
@@ -177,6 +184,8 @@ public class GUI extends JFrame {
 	 * @return mapa de tipo Container
 	 */
 	public Container getMapa() {
+		if(panelJuego == null)
+			System.out.println("Mapa es nulo wtf");
 		return panelJuego;
 	}
 
@@ -186,7 +195,10 @@ public class GUI extends JFrame {
 	 * @param nivel Nivel actual
 	 */
 	public void cambioNivel(int nivel) {
-		this.reDimensionar(fondoJuego, new ImageIcon(GUI.class.getResource("/RecursosGraficosNiveles/FONDO-LVL0"+nivel+".png")));
+//		this.reDimensionar(fondoJuego, new ImageIcon(GUI.class.getResource("/RecursosGraficosNiveles/FONDO-LVL0"+nivel+".png")));
+		URL imageUrl = getClass().getResource("/RecursosGraficosNiveles/fondo.gif");
+		ImageIcon gifIcon = new ImageIcon(imageUrl);
+		fondoJuego.setIcon(gifIcon);
 		panelJuego.moveToBack(fondoJuego);
 		panelJuego.pantallaNivel(nivel - 1);
 		juego.pausa();
@@ -231,7 +243,7 @@ public class GUI extends JFrame {
 	public void sonidoDisparar() {
 		try {
 			
-			Clip disparo = AudioSystem.getClip();
+			disparo = AudioSystem.getClip();
 			disparo.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/disparo.wav")));
 			disparo.start();
 
@@ -245,9 +257,30 @@ public class GUI extends JFrame {
 	public void musica() {
 		try {
 			
-			Clip disparo = AudioSystem.getClip();
-			disparo.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/AcrossTheStars1.wav")));
-			disparo.start();
+			musica = AudioSystem.getClip();
+			musica.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/AcrossTheStars1.wav")));
+			musica.start();
+
+		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+			e.printStackTrace();
+			e.getMessage();
+			System.out.println("error audio");
+		}
+	}
+	
+	public void musicaGO(int p) {
+		try {
+			
+			musica = AudioSystem.getClip();
+			
+			if(p == 0) {
+				musica.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/Anakin's Betrayal.wav")));
+			}else {
+				musica.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/Star Wars Main Title and the Arrival at Naboo.wav")));
+				
+			}
+			
+			musica.start();
 
 		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 			e.printStackTrace();

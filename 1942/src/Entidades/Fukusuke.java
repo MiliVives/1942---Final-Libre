@@ -2,6 +2,7 @@ package Entidades;
 
 import java.awt.Point;
 import EntidadesGraficas.LabelFukusuke;
+import EstrategiasMovimiento.Vertical;
 import Visitors.Visitor;
 
 public class Fukusuke extends Enemigo{
@@ -18,7 +19,7 @@ public class Fukusuke extends Enemigo{
 	}
 
 	public Proyectil disparar() {
-		return new BalaBasica(new Point(entidad_graf.getX(), entidad_graf.getY() + 40));
+		return new BalaBasica(new Point(entidad_graf.getX(), entidad_graf.getY() + 40), Vertical.ABAJO);
 	}
 
 	@Override

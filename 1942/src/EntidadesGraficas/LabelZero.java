@@ -1,8 +1,10 @@
 package EntidadesGraficas;
 
+import java.awt.Image;
 import java.awt.Point;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class LabelZero extends LabelEnemigo{
 
@@ -11,6 +13,22 @@ public class LabelZero extends LabelEnemigo{
 		ImageIcon imagen = new ImageIcon(getClass().getResource("/RecursosGraficos_Enemigos/Zero.png"));//
 		this.setIcon(imagen);
 		reDimensionar(this, imagen);
+	}
+	
+	public void setDerecha() {
+		reDimensionar(this, new ImageIcon(LabelJugador.class.getResource("/RecursosGraficos_Enemigos/ZeroH.png")));
+	}
+	
+	public void setAbajo() {
+		reDimensionar(this, new ImageIcon(LabelJugador.class.getResource("/RecursosGraficos_Enemigos/ZeroD.png")));
+	}
+	
+	public void reDimensionar(JLabel label, ImageIcon grafico) {
+		if (grafico.getImage() != null) {
+			grafico.setImage(grafico.getImage().getScaledInstance(58, 58, Image.SCALE_DEFAULT));
+			label.setIcon(grafico);
+			label.repaint();
+		}	
 	}
 
 }

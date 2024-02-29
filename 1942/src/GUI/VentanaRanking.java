@@ -20,23 +20,21 @@ import javax.swing.border.EmptyBorder;
 import Logica.Ranking;
 
 public class VentanaRanking extends JFrame{
-	private JFrame padre;
 	private FondoPanel panelJuego;
 	private JLabel[] estados;
 	private JLabel fondoJuego;
+	private Disposable padre;
 
 
-	public VentanaRanking(JFrame parent) {
+	public VentanaRanking(Disposable parent) {
 		padre = parent;
 		this.setResizable(false);
-
 		setIconImage(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/icon.png")).getImage());
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 700);
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(null);
-
+		setAlwaysOnTop(true);
 		panelJuego = new FondoPanel();
 		panelJuego.setBounds(0, 60, 933, 601);
 		panelJuego.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -183,8 +181,7 @@ public class VentanaRanking extends JFrame{
 	}
 
 	public void dispose() {
-		// Called when Frame B is disposed (closed)
-		((Menu) padre).frameVentanaClosed();
+		padre.frameVentanaClosed();
 		super.dispose();
 	}
 

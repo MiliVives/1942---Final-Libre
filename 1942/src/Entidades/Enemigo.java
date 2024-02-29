@@ -6,6 +6,7 @@ import java.util.TimerTask;
 
 import EntidadesGraficas.EntidadGrafica;
 import EntidadesGraficas.LabelEnemigo;
+import EstrategiasMovimiento.EliminarTotal;
 import EstrategiasMovimiento.Vertical;
 import EstrategiasMovimiento.VerticalRemove;
 import Logica.GeneradorDePremio;
@@ -83,13 +84,13 @@ public abstract class Enemigo extends Entidad {
 	}
 
 	public void accionar() {
-		if (!quieto || muerto) {
+		if (!quieto || !muerto) {
 			if (movimiento != null)
 				movimiento.mover();
 
-			if (!muerto && random.nextInt(100) == 1) {// para que no dispare demasiado se considera solo una de
-															// cada 100 veces que se llame al accionar (en promedio)
-				disparar();
+			if (!muerto && random.nextInt(500) == 1) {// para que no dispare demasiado se considera solo una de
+				disparar();							  // cada 100 veces que se llame al accionar (en promedio)
+				
 			}
 		}
 	}
@@ -107,15 +108,16 @@ public abstract class Enemigo extends Entidad {
 			juego.sumarPuntos(puntos);
 			muerto = true;
 		}
-		eliminar();
+		
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			public void run() {
-				eliminar();
+				movimiento = new EliminarTotal(Enemigo.this,1);
 				timer.cancel();
 			}
 
 		}, 1 * 1000);
+
 	}
 
 	public int getDamage() {

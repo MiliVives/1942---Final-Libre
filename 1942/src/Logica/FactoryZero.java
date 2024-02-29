@@ -23,9 +23,9 @@ public class FactoryZero extends Factory {
 	}
 
 	private Point posicion() {
-		return new Point(r.nextInt(mapa.getWidth() - 60), -100); //CAMBIAR POSICION SPAWN
+		return new Point(330, mapa.getWidth()+100); //CAMBIAR POSICION SPAWN
 	}
-
+//return new Point(r.nextInt(mapa.getWidth() - 60), mapa.getWidth()+100);
 	@Override
 	protected void reiniciar() {
 		tiempo = 1;

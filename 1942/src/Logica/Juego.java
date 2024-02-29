@@ -9,6 +9,7 @@ import Entidades.Entidad;
 import Entidades.Jugador;
 import EntidadesGraficas.EntidadGrafica;
 import EntidadesGraficas.LabelJugador;
+import EstadosJugador.EstadoInmune;
 import GUI.GUI;
 
 /**
@@ -26,6 +27,7 @@ public class Juego implements Runnable {
 	private boolean moviendoArriba;
 	private boolean moviendoAbajo;	
 	private boolean disparando;
+	private boolean diveando;
 
 	// Atributo utilizado para el patron singleton
 	private static Juego juego;
@@ -42,7 +44,6 @@ public class Juego implements Runnable {
 	private Jugador jugador;
 	private Director director;
 	private Nivel nivelActual;
-	private Ranking ranking;
 
 	private boolean powerUpTemporal;
 
@@ -54,12 +55,10 @@ public class Juego implements Runnable {
 		moviendoIzquierda = false;
 		moviendoDerecha = false;
  		disparando = false;
-		ranking = new Ranking("src/ArchivosDeTexto/Ranking.txt");
 		entidades = new LinkedList<Entidad>();
 		aEliminar = new LinkedList<Entidad>();
 		aAgregar = new LinkedList<Entidad>();
 		powerUpTemporal = false;
-
 	}
 
 	/**
@@ -116,6 +115,14 @@ public class Juego implements Runnable {
 	public void setDisparando(boolean mov) {
 		this.disparando = mov;
 	}
+	
+	public void setDiveo(boolean b) {
+		diveando = b;
+	}
+	
+	public boolean getDiveo() {
+		return diveando;
+	}
 
 	public void agregarEntidad(Entidad nueva) {
 		aAgregar.add(nueva);// se agrega en la lista auxiliar por que no se puede modificar la lista de
@@ -135,10 +142,10 @@ public class Juego implements Runnable {
 
 	public void nivelCompleto() {
 		if (director.finJuego()) {// el director se encarga de saber si existe un proximo nivel
+			int puntaje = jugador.getPuntos();
 			juego = null;
 			// se setea nulo para que al empezar otra partida se cree otra instancia deJuego
-			//MTERLO EN RANKING
-			gui.gano();
+			gui.gano(puntaje);
 			jugando = false;// corta la ejecucion del juego
 		} else {
 			siguienteNivel();
@@ -171,7 +178,6 @@ public class Juego implements Runnable {
 		gui.actualizarPuntos(jugador.getPuntos());
 		gui.actualizarVida(jugador.getVidas());
 		LabelJugador labelJugador=(LabelJugador)jugador.getGrafico();
-		labelJugador.setPowerUp(powerUpTemporal);
 	}
 
 	private void detectarColisiones() {
@@ -196,8 +202,9 @@ public class Juego implements Runnable {
 
 	private void removerEntidadesEliminadas() {
 		for (Entidad e : aEliminar) {
-//			if(e != null)
-				entidades.remove(e);
+			if(e == null)
+				System.out.println("es nulo");
+			entidades.remove(e);
 		}
 		aEliminar = new LinkedList<Entidad>();
 	}
@@ -205,12 +212,17 @@ public class Juego implements Runnable {
 	private void agregarEntidadesNuevas() {
 		for (Entidad e : aAgregar) {
 			entidades.add(e);
+			if(e == null)
+				System.out.println("es nulo");
 		}
 		aAgregar = new LinkedList<Entidad>();
 	}
 
 	public Container getMapa() {
-		return gui.getMapa();
+		//la gui es lo nulo
+		if(gui != null)
+				return gui.getMapa();
+		else return null;
 	}
 
 	@Override
@@ -238,6 +250,8 @@ public class Juego implements Runnable {
 	}
 
 	public void eliminarEnemigo(Enemigo avion) {
+		if(avion == null)
+			System.out.println("NULO EN ELIMINAR ENEMIGO");
 		nivelActual.eliminarEnemigo(avion);
 		eliminarEntidad(avion);
 	}
@@ -258,11 +272,10 @@ public class Juego implements Runnable {
 	 * metodo para notificar que el jugador fue infectado
 	 */
 	public void perdio() {
-		//METERLO EN RANKING
-		ranking.addPlayer("pepe", jugador.getPuntos());
+		int puntaje = jugador.getPuntos();
 		this.juego = null;
 		jugando = false;
-		gui.perdio();
+		gui.perdio(puntaje);
 	}
 
 	public List<Enemigo> getEnemigos() {
@@ -274,7 +287,8 @@ public class Juego implements Runnable {
 	 * jugador
 	 */
 	public void seDisparo() {
-		gui.sonidoDisparar();
+		if(diveando == false)
+			gui.sonidoDisparar();
 	}
 
 	public boolean jugando() {

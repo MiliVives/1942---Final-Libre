@@ -4,13 +4,11 @@ import javax.swing.ImageIcon;
 
 public class LabelJugador extends EntidadGrafica {
 	
-	private String[] rutasImagen = { "/RecursosGraficos_Jugador/avionInicial.png",
-			"/RecursosGraficos_Jugador/uy-kieto inmunidad.png", "/RecursosGraficos_Jugador/uy-kieto superArma.png",
-			"/RecursosGraficos_Jugador/uy-kieto velocidad.png" };
+	private String[] rutasImagen = { "/RecursosGraficos_Jugador/avionInicial.png", "/RecursosGraficos_Jugador/diveo1.gif"};
 
 	public LabelJugador() {
 		super();
-		this.setSize(70, 70);
+		this.setSize(70, 55);
 		ImageIcon imagen = new ImageIcon(getClass().getResource(rutasImagen[0]));
 		this.setIcon(imagen);
 		reDimensionar(this, imagen);
@@ -26,14 +24,10 @@ public class LabelJugador extends EntidadGrafica {
 	 *                jugador. No se tiene en cuenta los primeros elementos del
 	 *                arreglo ya que seran los que no afectan directamente al jugador
 	 */
-	public void setPowerUp(boolean mejoras) {
-		boolean encontre = false;
-		
-		if (mejoras) {
+	
+	public void setDiveo(boolean diveo) {
+		if(diveo == true) {
 			super.reDimensionar(this, new ImageIcon(LabelJugador.class.getResource(rutasImagen[1])));
-			encontre = true;
-		}
-		if (!encontre)
-			super.reDimensionar(this, new ImageIcon(getClass().getResource(rutasImagen[0])));
+		}else super.reDimensionar(this, new ImageIcon(LabelJugador.class.getResource(rutasImagen[0])));
 	}
 }

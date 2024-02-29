@@ -29,7 +29,7 @@ public class GeneradorDePremio {
 			//se chequea que no se cree un premio temporal que ya este activado
 			indice=r.nextInt(cantidadPremios);
 		}
-		switch(indice) {
+		switch(2) {
 			case 0: new GreenPOW(p);
 				break;
 			case 1: new RedPOW(p);
