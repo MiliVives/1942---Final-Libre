@@ -123,6 +123,10 @@ public class Juego implements Runnable {
 	public boolean getDiveo() {
 		return diveando;
 	}
+	
+	public Jugador getJugador() {
+		return jugador;
+	}
 
 	public void agregarEntidad(Entidad nueva) {
 		aAgregar.add(nueva);// se agrega en la lista auxiliar por que no se puede modificar la lista de
@@ -155,12 +159,14 @@ public class Juego implements Runnable {
 	private void siguienteNivel() {
 		for (Entidad e : entidades) {// se remueve las entidades del mapa excepto el jugador (proyectiles,
 										// premios,etc)
-			if (e != jugador) {
+			if (e != jugador && e != jugador.getNaveDerecha() && e != jugador.getNaveIzquierda()) {
 				gui.getMapa().remove(e.getGrafico());
 			}
 		}
 		entidades = new LinkedList<Entidad>();// reinicio la lista de entidades
 		entidades.add(jugador);
+		entidades.add(jugador.getNaveDerecha());
+		entidades.add(jugador.getNaveIzquierda());
 		nivelActual = director.construirSiguienteNivel();
 		this.gui.cambioNivel(nivelActual.getValor() + 1);
 
@@ -233,7 +239,7 @@ public class Juego implements Runnable {
 			director = new Director();
 			this.gui.cambioNivel(1);
 			nivelActual = director.construirSiguienteNivel();
-			jugador = new Jugador();
+			jugador = new Jugador(true);
 			while (jugando) {
 				for (Entidad e : entidades) {
 					e.accionar();

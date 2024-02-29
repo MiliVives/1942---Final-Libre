@@ -4,12 +4,12 @@ import javax.swing.ImageIcon;
 
 public class LabelAvionLateral extends EntidadGrafica {
 	
-	private String[] rutasImagen = { "/RecursosGraficos_Jugador/avionLateral.png"};
+	private String ruta = "/RecursosGraficos_Jugador/avionLateral.png";
 
 	public LabelAvionLateral() {
 		super();
 		this.setSize(50, 50);
-		ImageIcon imagen = new ImageIcon(getClass().getResource(rutasImagen[0]));
+		ImageIcon imagen = new ImageIcon(getClass().getResource(ruta));
 		this.setIcon(imagen);
 		reDimensionar(this, imagen);
 // 		this.setLocation(430, 520);

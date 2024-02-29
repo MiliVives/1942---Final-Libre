@@ -20,7 +20,7 @@ public abstract class EstrategiaMovimiento {
 		this.entidad = entidad;
 		if(Juego.getJuego() == null)
 			System.out.println("el juego es nulo");
-		if(Juego.getJuego().getMapa() != null) {
+		if(Juego.getJuego().getMapa() != null && entidad.getGrafico() != null) {
 			Container mapa = Juego.getJuego().getMapa();
 			limiteX = (int) mapa.getWidth() - (int) entidad.getGrafico().getWidth();
 			limiteY = (int) mapa.getHeight() - (int) entidad.getGrafico().getHeight();

@@ -1,0 +1,29 @@
+package EstrategiasMovimiento;
+
+import Entidades.Entidad;
+import EntidadesGraficas.EntidadGrafica;
+
+public class HorizontalAvionLateralDerecha extends EstrategiaMovimiento {
+	public static final int DERECHA = 1;
+	public static final int IZQUIERDA = -1;
+	private int limiteAvionX = 100;
+
+	public HorizontalAvionLateralDerecha(Entidad entidad, int direccion) {
+		super(entidad, direccion);
+	}
+
+	@Override
+	public void mover() {
+		EntidadGrafica g = this.entidad.getGrafico();
+		int siguientePosX = g.getX() + this.direccion * entidad.getVelocidad();
+		if (siguientePosX > limiteX)
+			g.setLocation(limiteX, g.getY());
+		else {
+			if (siguientePosX < limiteAvionX)
+				g.setLocation(limiteAvionX, g.getY());
+			else
+				g.setLocation(siguientePosX, g.getY());
+		}
+
+	}
+}
