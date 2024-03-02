@@ -1,15 +1,18 @@
 package Logica;
 
 import java.awt.Container;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import Entidades.Enemigo;
 import Entidades.Entidad;
+import Entidades.EntidadesDecoracion;
 import Entidades.Jugador;
+import Entidades.Planeta;
 import EntidadesGraficas.EntidadGrafica;
 import EntidadesGraficas.LabelJugador;
-import EstadosJugador.EstadoInmune;
 import GUI.GUI;
 
 /**
@@ -19,37 +22,43 @@ import GUI.GUI;
  * del programa. En esta clase se implementa la ejecucion principal del juego y
  * funciona como nexo entre la parte loguica y la gui
  */
+
 public class Juego implements Runnable {
 
 	// Atributos booleanos que indican el comportamiento del usuario
+	
 	private boolean moviendoIzquierda;
 	private boolean moviendoDerecha;
 	private boolean moviendoArriba;
 	private boolean moviendoAbajo;	
 	private boolean disparando;
 	private boolean diveando;
+	private boolean powerUpTemporal;
 
 	// Atributo utilizado para el patron singleton
+	
 	private static Juego juego;
 
 	// Listas de entidades
-
+	
 	private List<Entidad> entidades;
 	private List<Entidad> aEliminar;
 	private List<Entidad> aAgregar;
+	private List<EntidadesDecoracion> estrellas;
 
 	// Otros atributos
+	
 	private boolean jugando;
 	private GUI gui;
+	private Planeta p;
 	private Jugador jugador;
 	private Director director;
 	private Nivel nivelActual;
-
-	private boolean powerUpTemporal;
-
+	
 	/**
 	 * El constructor es privado para que funcione el patron singleton
 	 */
+	
 	private Juego() {
 		juego = this;
 		moviendoIzquierda = false;
@@ -58,6 +67,7 @@ public class Juego implements Runnable {
 		entidades = new LinkedList<Entidad>();
 		aEliminar = new LinkedList<Entidad>();
 		aAgregar = new LinkedList<Entidad>();
+		estrellas = new LinkedList<EntidadesDecoracion>();
 		powerUpTemporal = false;
 	}
 
@@ -65,8 +75,8 @@ public class Juego implements Runnable {
 	 * metodo estatico para que se pueda obtener la instancia de Juego desde
 	 * cualquier parte del programa
 	 * 
-	 * @return instancia actual del juego
 	 */
+	
 	public static Juego getJuego() {
 		if (juego == null) {
 			juego = new Juego();
@@ -134,9 +144,8 @@ public class Juego implements Runnable {
 	}
 
 	public void eliminarEntidad(Entidad a_eliminar) {
-		aEliminar.add(a_eliminar);
-		// se agrega en la lista auxiliar de entidades para eliminar por que no se puede
-		// modificar la lista de entidades actuales mientras se ejecuta los accionar
+		aEliminar.add(a_eliminar);	// se agrega en la lista auxiliar de entidades para eliminar por que no se puede
+									// modificar la lista de entidades actuales mientras se ejecuta los accionar
 		EntidadGrafica ent = a_eliminar.getGrafico();
 		if (jugando) {
 			getMapa().remove(ent);
@@ -145,31 +154,39 @@ public class Juego implements Runnable {
 	}
 
 	public void nivelCompleto() {
-		if (director.finJuego()) {// el director se encarga de saber si existe un proximo nivel
+		if (director.finJuego()) {	// el director se encarga de saber si existe un proximo nivel
 			int puntaje = jugador.getPuntos();
-			juego = null;
-			// se setea nulo para que al empezar otra partida se cree otra instancia deJuego
+			juego = null;	// se setea nulo para que al empezar otra partida se cree otra instancia deJuego
 			gui.gano(puntaje);
-			jugando = false;// corta la ejecucion del juego
+			jugando = false;	// corta la ejecucion del juego
 		} else {
 			siguienteNivel();
 		}
 	}
 
 	private void siguienteNivel() {
-		for (Entidad e : entidades) {// se remueve las entidades del mapa excepto el jugador (proyectiles,
-										// premios,etc)
-			if (e != jugador && e != jugador.getNaveDerecha() && e != jugador.getNaveIzquierda()) {
-				gui.getMapa().remove(e.getGrafico());
+		for (Entidad e : entidades) {// se remueve las entidades del mapa excepto el jugador y el fondo (proyectiles, premios,etc)
+			if (e != jugador && e != jugador.getNaveDerecha() && e != jugador.getNaveIzquierda() && e != p) {
+				for(EntidadesDecoracion eD : estrellas)
+					if(e != eD)
+						gui.getMapa().remove(e.getGrafico());
 			}
 		}
-		entidades = new LinkedList<Entidad>();// reinicio la lista de entidades
+		entidades = new LinkedList<Entidad>();	// reinicio la lista de entidades
 		entidades.add(jugador);
-		entidades.add(jugador.getNaveDerecha());
-		entidades.add(jugador.getNaveIzquierda());
+		if(jugador.getNaveDerecha() != null)
+			entidades.add(jugador.getNaveDerecha());
+		if(jugador.getNaveIzquierda() != null)
+			entidades.add(jugador.getNaveIzquierda());
+		if(p != null)
+			entidades.add(p);
 		nivelActual = director.construirSiguienteNivel();
+		if(estrellas.isEmpty() == false)
+			for(EntidadesDecoracion eD : estrellas) {
+				eD.setLabel(); 
+				entidades.add(eD);
+			}
 		this.gui.cambioNivel(nivelActual.getValor() + 1);
-
 	}
 
 	public void setGUI(GUI gui) {
@@ -224,8 +241,7 @@ public class Juego implements Runnable {
 		aAgregar = new LinkedList<Entidad>();
 	}
 
-	public Container getMapa() {
-		//la gui es lo nulo
+	public Container getMapa() {	
 		if(gui != null)
 				return gui.getMapa();
 		else return null;
@@ -234,11 +250,18 @@ public class Juego implements Runnable {
 	@Override
 	public void run() {
 		try {
+			FactoryEntidadesDecoracion f = new FactoryEntidadesDecoracion();
 			gui.musica();
 			jugando = true;
 			director = new Director();
 			this.gui.cambioNivel(1);
 			nivelActual = director.construirSiguienteNivel();
+			for(int i = 0; i < 25; i++) {
+				 EntidadesDecoracion e = (EntidadesDecoracion) f.crearEnemigo(false);
+				 estrellas.add(e);
+			}
+			if(p == null)
+				p = new Planeta(new Point(500, -100), 1, false); 
 			jugador = new Jugador(true);
 			while (jugando) {
 				for (Entidad e : entidades) {
@@ -265,6 +288,7 @@ public class Juego implements Runnable {
 	/**
 	 * detiene la ejecucion del juego brevemente, por 3 segundos
 	 */
+		
 	public void pausa() {
 		try {
 			Thread.sleep(3000);
@@ -275,8 +299,9 @@ public class Juego implements Runnable {
 	}
 
 	/**
-	 * metodo para notificar que el jugador fue infectado
+	 * metodo para notificar que el jugador perdio
 	 */
+	
 	public void perdio() {
 		int puntaje = jugador.getPuntos();
 		this.juego = null;
@@ -289,12 +314,16 @@ public class Juego implements Runnable {
 	}
 
 	/**
-	 * m�todo para notificar al juego que se genero un proyectil lanzado por el
+	 * metodo para notificar al juego que se genero un proyectil lanzado por el
 	 * jugador
 	 */
+	
 	public void seDisparo() {
 		if(diveando == false)
 			gui.sonidoDisparar();
+	}
+	public void seMurio() {
+		gui.sonidoMuerte();
 	}
 
 	public boolean jugando() {
@@ -308,5 +337,4 @@ public class Juego implements Runnable {
 	public void sumarPuntos(int p) {
 		jugador.setPuntos(p);
 	}
-
 }

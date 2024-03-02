@@ -2,13 +2,19 @@ package Entidades;
 
 import java.awt.Point;
 
-import EntidadesGraficas.LabelProyectilMortal;
+import EntidadesGraficas.LabelProyectilLateral;
+import EstrategiasMovimiento.Vertical;
+import EstrategiasMovimiento.VerticalRemove;
 import Visitors.Visitor;
+import Visitors.VisitorProyectilNormal;
+import Visitors.VisitorProyectilNormalLateral;
 
-public class ProyectilNormalLateral extends ProyectilJugador {
+public class ProyectilNormalLateral extends Proyectil {
 
 	public ProyectilNormalLateral(Point posicion) {
-		super(new LabelProyectilMortal(posicion));
+		super(new LabelProyectilLateral(posicion));
+		movimiento = new VerticalRemove(this, Vertical.ARRIBA);
+		visitor = new VisitorProyectilNormalLateral(this);
 		velocidad = 6;
 		damage = 5;
 	}

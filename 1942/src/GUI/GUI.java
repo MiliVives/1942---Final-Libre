@@ -6,15 +6,13 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import Logica.Juego;
-
 import javax.swing.JLabel;
-
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
@@ -27,44 +25,40 @@ public class GUI extends JFrame {
 	private FondoPanel panelJuego;
 	private Juego juego;
 	private Thread hiloJuego;
-	private JLabel nivelTanda;
 	private JLabel[] estados;
 	private JLabel fondoJuego;
-	Clip musica;
+	private boolean gameOver;
+	Clip musica, musicaGO;
 	Clip disparo;
-	
-	/**
-	 * Crea el mapa de juego
-	 * @param dificultad de juego 
-	 * -> 0 si es normal
-	 * -> 1 si es dificil
-	 */
+
 	public GUI() {
 		
-		this.setResizable(false);
+		gameOver = false;
 		
+		this.setResizable(false);
+
 		setIconImage(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/icon.png")).getImage());
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 700);
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(null);
-		
+
 		panelJuego = new FondoPanel();
 		panelJuego.setBounds(0, 60, 933, 601);
 		panelJuego.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panelJuego.setLayout(null);
 		contentPane.add(panelJuego);
-		
-		fondoJuego = new JLabel("New label");
-		URL imageUrl = getClass().getResource("/RecursosGraficosNiveles/fondo.gif");
+
+		fondoJuego = new JLabel();
+		URL imageUrl = getClass().getResource("/RecursosGraficosNiveles/fondo.png");
 		ImageIcon gifIcon = new ImageIcon(imageUrl);
 		fondoJuego.setIcon(gifIcon);
 		fondoJuego.setBounds(0, 0, 933,601);
 		reDimensionar(fondoJuego, (ImageIcon) fondoJuego.getIcon());
 		panelJuego.add(fondoJuego);
 		panelJuego.moveToBack(fondoJuego);
-	
+
 		panelJuego.repaint();
 		JPanel barraSuperior = new JPanel();
 		barraSuperior.setBounds(0, 0, 933, 60);
@@ -88,25 +82,25 @@ public class GUI extends JFrame {
 		}
 		estados[1].setIcon(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/corazon.png")));
 		estados[4].setIcon(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/star.png")));
-		
+
 		reDimensionar(estados[1], (ImageIcon) estados[1].getIcon());
 		reDimensionar(estados[4], (ImageIcon) estados[4].getIcon());
-		
+
 		estados[0].setForeground(Color.WHITE);
 		estados[0].setText("");
 		estados[2].setForeground(Color.WHITE);
 		estados[2].setText("");
 		estados[3].setForeground(Color.WHITE);
 		estados[3].setText("");
-		
+
 		Font font = estados[2].getFont();
-		estados[0].setFont(new Font(font.getName(), Font.PLAIN, 20)); // Adjust the size (18 in this example)
+		estados[0].setFont(new Font(font.getName(), Font.PLAIN, 20)); 
 		estados[3].setFont(new Font(font.getName(), Font.PLAIN, 20));
 		estados[0].setHorizontalAlignment(JLabel.CENTER);
 		estados[0].setVerticalAlignment(JLabel.CENTER);
 		estados[3].setHorizontalAlignment(JLabel.CENTER);
 		estados[3].setVerticalAlignment(JLabel.CENTER);
-		
+
 
 		barraSuperior.add(panelMejoras);
 
@@ -123,23 +117,13 @@ public class GUI extends JFrame {
 		hiloJuego = new Thread() {
 			public void run() {
 				juego.run();
-				
 			}
 		};
-
-		
 		hiloJuego.start();
-
-		
 		this.repaint();
 		panelJuego.repaint();
 	}
-	
-	/**
-	 * Redimensiona el ImageIcon grafico en base al JLabel label
-	 * @param label
-	 * @param grafico
-	 */
+
 	private void reDimensionar(JLabel label, ImageIcon grafico) {
 		Image image = grafico.getImage();
 		if (image != null) {
@@ -153,36 +137,41 @@ public class GUI extends JFrame {
 	/**
 	 * Se crea abre un nuevo frame donde se muestra que se gano el juego
 	 */
+	
 	public void gano(int puntaje) {
+		GameOver_Win win;
 		this.juego = null;
 		musica.stop();
 		musicaGO(1);
-		GameOver_Win win = new GameOver_Win(1, puntaje);
+		if(gameOver == false) {
+			win = new GameOver_Win(1, puntaje, this);
+			gameOver = true;
+			win.setVisible(true);
+		}
 		hiloJuego = null;
 		this.panelJuego = null;
 		this.dispose();
-		win.setVisible(true);
 	}
 
 	/**
 	 * Se crea abre un nuevo frame donde se muestra que se perdio el juego
 	 */
+	
 	public void perdio(int puntaje) {
+		GameOver_Win win;
 		this.juego = null;
 		hiloJuego = null;
 		this.panelJuego = null;
 		this.dispose();
 		musica.stop();
 		musicaGO(0);
-		GameOver_Win go = new GameOver_Win(0, puntaje);
-		go.setVisible(true);
-		
+		if(gameOver == false) {
+			win = new GameOver_Win(0, puntaje, this);
+			gameOver = true;
+			win.setVisible(true);
+		}
 	}
 
-	/**
-	 * retorna el mapa donde se muestra el juego 
-	 * @return mapa de tipo Container
-	 */
 	public Container getMapa() {
 		if(panelJuego == null)
 			System.out.println("Mapa es nulo wtf");
@@ -191,12 +180,11 @@ public class GUI extends JFrame {
 
 	/**
 	 * Muestra en el panel de juego la transicion del nivel. Esta transicion muestra el nivel actual
-	 * A su vez que cambia el mapa al correspondiente del nivel actual
-	 * @param nivel Nivel actual
+	 * 
 	 */
+	
 	public void cambioNivel(int nivel) {
-//		this.reDimensionar(fondoJuego, new ImageIcon(GUI.class.getResource("/RecursosGraficosNiveles/FONDO-LVL0"+nivel+".png")));
-		URL imageUrl = getClass().getResource("/RecursosGraficosNiveles/fondo.gif");
+		URL imageUrl = getClass().getResource("/RecursosGraficosNiveles/fondo.png");
 		ImageIcon gifIcon = new ImageIcon(imageUrl);
 		fondoJuego.setIcon(gifIcon);
 		panelJuego.moveToBack(fondoJuego);
@@ -207,59 +195,97 @@ public class GUI extends JFrame {
 	}
 
 	/**
-	 * Actualiza los puntos deel jugador
+	 * Actualiza los puntos del jugador
 	 */
-	public void actualizarPuntos(int puntos) {
-		 estados[3].setText(""+puntos+"");
-	}
 	
+	public void actualizarPuntos(int puntos) {
+		estados[3].setText(""+puntos+"");
+	}
+
 	public void actualizarVida(int vida) {
 		estados[0].setText(""+vida+"");
 	}
 
 	/**
-	 * actualiza el label que muestra la tanda y nivel actuales
-	 * @param nivel
-	 * @param tanda
-	 */
-	public void actualizarNivelTanda(int nivel, int tanda) {
-		ImageIcon im = new ImageIcon(
-				getClass().getResource("/RecursosGraficos_Extras/NivelTanda/nivel" + nivel + "tanda" + tanda + ".png"));
-		this.nivelTanda.setIcon(im);
-	}
-
-	/**
-	 * actualiza la barra que muestra los estados de los premios.
-	 * Si un premio esta activo entonces se mostrar� con su label activo
-	 * en caso contrario se mostrara con su label desactivado
-	 * @param mejoras estado de cada premios
-	 */
-	
-	//estados[i].setEnabled(mejoras[i]);
-
-	/**
 	 * Activa el sonido de disparo
 	 */
+	
 	public void sonidoDisparar() {
 		try {
-			
 			disparo = AudioSystem.getClip();
 			disparo.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/disparo.wav")));
 			disparo.start();
-
 		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 			e.printStackTrace();
 			e.getMessage();
 			System.out.println("error audio");
 		}
 	}
+	
+	
+	/**
+	 * Activa la musica de fondo
+	 */
 	
 	public void musica() {
 		try {
-			
 			musica = AudioSystem.getClip();
 			musica.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/AcrossTheStars1.wav")));
 			musica.start();
+		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+			e.printStackTrace();
+			e.getMessage();
+			System.out.println("error audio");
+		}
+	}
+
+	/**
+	 * Activa la musica de victoria o perdida
+	 */
+	
+	public void musicaGO(int p) {
+		try {
+			musicaGO = AudioSystem.getClip();
+			if(p == 0) {
+				musicaGO.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/Anakin's Betrayal.wav")));
+			}else {
+				musicaGO.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/Star Wars Main Title and the Arrival at Naboo.wav")));
+
+			}
+			musicaGO.start();
+		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+			e.printStackTrace();
+			e.getMessage();
+			System.out.println("error audio");
+		}
+	}
+	
+	/**
+	 * Frena la musica de victoria o perdida
+	 */
+	
+	public void frenarMusicaGO() {
+		musicaGO.stop();
+	}
+
+	/**
+	 * Activa el sonido de muerto
+	 */
+	
+	public void sonidoMuerte() {
+		try {
+			Clip m;
+			m = AudioSystem.getClip();
+			m.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/death.wav")));
+			m.start();
+			Timer timer = new Timer();
+			timer.schedule(new TimerTask() {
+				public void run() {
+					m.stop();
+					timer.cancel();
+				}
+
+			}, 1 * 1000);
 
 		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 			e.printStackTrace();
@@ -268,24 +294,7 @@ public class GUI extends JFrame {
 		}
 	}
 	
-	public void musicaGO(int p) {
-		try {
-			
-			musica = AudioSystem.getClip();
-			
-			if(p == 0) {
-				musica.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/Anakin's Betrayal.wav")));
-			}else {
-				musica.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/Star Wars Main Title and the Arrival at Naboo.wav")));
-				
-			}
-			
-			musica.start();
-
-		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-			e.printStackTrace();
-			e.getMessage();
-			System.out.println("error audio");
-		}
+	public void setGameOver(boolean modo) {
+		gameOver = modo;
 	}
 }

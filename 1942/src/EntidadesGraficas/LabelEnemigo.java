@@ -2,8 +2,8 @@ package EntidadesGraficas;
 
 import java.awt.Point;
 import java.util.Random;
-
 import javax.swing.ImageIcon;
+import Logica.Juego;
 
 public abstract class LabelEnemigo extends EntidadGrafica {
 
@@ -11,12 +11,13 @@ public abstract class LabelEnemigo extends EntidadGrafica {
 
 	public LabelEnemigo(Point p) {
 		super();
-		this.setSize(60, 100);
+		this.setSize(80, 80);
 		this.setLocation(p);
 	}
 
 	public void seMato() {
 		ImageIcon imagen = null;
+		Juego.getJuego().seMurio();
 		Random rand = new Random();
 		int i = rand.nextInt(7);
 
@@ -25,8 +26,5 @@ public abstract class LabelEnemigo extends EntidadGrafica {
 		this.setIcon(imagen);
 		this.setBounds(getX(), getY(), 100, 75);
 		this.repaint();
-		
-
 	}
-
 }

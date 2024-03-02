@@ -1,6 +1,5 @@
 package EstadosArma;
 
-
 import Entidades.Jugador;
 import Entidades.Proyectil;
 
@@ -10,7 +9,6 @@ public class SinArma extends EstadoArma {
 		super(jugador);
 	}
 
-	@Override
 	public Proyectil disparar() {
 		return null;
 	}

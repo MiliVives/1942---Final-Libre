@@ -10,6 +10,7 @@ import Visitors.Visitor;
  * Clase que modela un premio del juego
  *
  */
+
 public abstract class Premio extends Entidad {
 
 	public Premio(EntidadGrafica entidad_graf) {

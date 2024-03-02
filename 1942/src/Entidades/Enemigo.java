@@ -3,7 +3,6 @@ package Entidades;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import EntidadesGraficas.EntidadGrafica;
 import EntidadesGraficas.LabelEnemigo;
 import EstrategiasMovimiento.EliminarTotal;
@@ -23,12 +22,12 @@ public abstract class Enemigo extends Entidad {
 	protected Random random;
 
 	/**
-	 * Crea un infectado
+	 * Crea un enemigo
 	 * 
 	 * @param entidad_graf entidad grafica de la entidad
 	 * @param duracion     tiempo que permanecer� quieto el enemigo, en
 	 *                     milisegundos desde que empieza su tanda
-	 * @param enEspera     parametro necesario para saber si el infectado que se
+	 * @param enEspera     parametro necesario para saber si el enemigo que se
 	 *                     crea pertene a la primer tanda(en ese caso no estara en
 	 *                     espera) o y si deberia quedarse quieto hasta que se
 	 *                     notifique(cuando se llegue a su tanda)
@@ -36,7 +35,7 @@ public abstract class Enemigo extends Entidad {
 	public Enemigo(EntidadGrafica entidad_graf, int duracion, boolean enEspera) {
 		super(entidad_graf);
 		velocidad = 1;
-		movimiento = null;// en principio no se moveran hasta que se indique que aparezca por pantalla
+		movimiento = null;		// en principio no se moveran hasta que se indique que aparezca por pantalla
 		random = new Random();
 		suelta_premio = random.nextInt(5) == 1;
 		vida = 5;
@@ -54,8 +53,9 @@ public abstract class Enemigo extends Entidad {
 
 	/**
 	 * cuando se llama a este m�todo empieza a contar el tiempo de espera del
-	 * infectado para luego aparecer en pantalla
+	 * enemigo para luego aparecer en pantalla
 	 */
+	
 	public void aparecer() {
 		Enemigo inf = this;
 		Timer timer = new Timer();
@@ -64,7 +64,7 @@ public abstract class Enemigo extends Entidad {
 			public void run() {
 				if (juego.jugando())
 					movimiento = new VerticalRemove(inf, Vertical.ABAJO);
-				timer.cancel();// se ejecuta una vez el run y se cancela el timer
+				timer.cancel();
 			};
 		};
 
@@ -89,7 +89,7 @@ public abstract class Enemigo extends Entidad {
 				movimiento.mover();
 
 			if (!muerto && random.nextInt(500) == 1) {// para que no dispare demasiado se considera solo una de
-				disparar();							  // cada 100 veces que se llame al accionar (en promedio)
+				disparar();							  // cada 500 veces que se llame al accionar (en promedio)
 				
 			}
 		}
@@ -98,6 +98,7 @@ public abstract class Enemigo extends Entidad {
 	/**
 	 * Es invocado cuando el enemigo tiene vida 0
 	 */
+	
 	public void desaparecer() {
 		LabelEnemigo li = (LabelEnemigo) this.getGrafico();
 		li.seMato();

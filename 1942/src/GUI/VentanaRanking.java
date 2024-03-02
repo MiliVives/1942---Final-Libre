@@ -1,7 +1,6 @@
 package GUI;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -51,11 +50,13 @@ public class VentanaRanking extends JFrame{
 
 		JPanel labelsPanel = new JPanel();
 		labelsPanel.setLayout(new GridBagLayout());
-		labelsPanel.setOpaque(false); // Make the panel transparent
+		labelsPanel.setOpaque(false); 
 
-
-
-		// Add headers
+		/*
+		 * headers de la tabla
+		 * 	
+		 */
+		
 		JLabel headerPosicion = new JLabel("Posición");
 		JLabel headerJugador = new JLabel("Jugador");
 		JLabel headerPuntaje = new JLabel("Puntaje");
@@ -69,12 +70,11 @@ public class VentanaRanking extends JFrame{
 		headerJugador.setForeground(Color.WHITE);
 		headerPuntaje.setForeground(Color.WHITE);
 
-		// Add headers to the panel
 		GridBagConstraints gbcHeaders = new GridBagConstraints();
 		gbcHeaders.gridx = 0;
 		gbcHeaders.gridy = 0;
 		gbcHeaders.anchor = GridBagConstraints.CENTER;
-		gbcHeaders.insets = new Insets(10, 20, 10, 20); // Adjust spacing as needed
+		gbcHeaders.insets = new Insets(10, 20, 10, 20); 
 
 		labelsPanel.add(headerPosicion, gbcHeaders);
 
@@ -95,7 +95,8 @@ public class VentanaRanking extends JFrame{
 		    pos.setHorizontalAlignment(JLabel.CENTER);
 		    pos.setVerticalAlignment(JLabel.CENTER);
 
-		    // Create JLabel for player rank
+		    // Crea JLabel para los jugadores del ranking
+		    
 		    String nombreJugador = " " + rangos_actuales.nombreJugador(i);
 		    JLabel label = new JLabel(nombreJugador);
 		    label.setFont(new Font(label.getFont().getName(), Font.PLAIN, 20));
@@ -110,12 +111,13 @@ public class VentanaRanking extends JFrame{
 		    puntaje.setHorizontalAlignment(JLabel.CENTER);
 		    puntaje.setVerticalAlignment(JLabel.CENTER);
 
-		    // Add labels to the panel
+		    // Agrego los labels
+		    
 		    GridBagConstraints gbc = new GridBagConstraints();
 		    gbc.gridx = 0;
-		    gbc.gridy = i + 1; // Start from row 1 for player data
+		    gbc.gridy = i + 1; 
 		    gbc.anchor = GridBagConstraints.CENTER;
-		    gbc.insets = new Insets(10, 20, 10, 20); // Adjust spacing as needed
+		    gbc.insets = new Insets(10, 20, 10, 20);
 
 		    labelsPanel.add(pos, gbc);
 
@@ -126,7 +128,8 @@ public class VentanaRanking extends JFrame{
 		    labelsPanel.add(puntaje, gbc);
 		}
 
-		// Center the labelsPanel within panelJuego
+		// Centro los labelsPanel en el panelJuego
+		
 		int x = (panelJuego.getWidth() - labelsPanel.getPreferredSize().width) / 2;
 		int y = (panelJuego.getHeight() - labelsPanel.getPreferredSize().height) / 2;
 
@@ -152,9 +155,6 @@ public class VentanaRanking extends JFrame{
 		for (int i = 0; i < 5; i++) {
 			estados[i] = new JLabel();
 			estados[i].setSize(70, 70); 
-			//			panelMejoras.add(estados[i]);
-			//			estados[i].setEnabled(true);
-
 		}
 
 		JButton volver = new JButton();
@@ -163,19 +163,17 @@ public class VentanaRanking extends JFrame{
 		volver.setEnabled(true);
 		volver.setIcon(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/back.png")));
 		volver.setBackground(Color.BLACK);
-		volver.setBorder(new EmptyBorder(0, 0, 0, 0)); // Set an EmptyBorder with zero thickness
+		volver.setBorder(new EmptyBorder(0, 0, 0, 0)); 
 		reDimensionar(volver, (ImageIcon) volver.getIcon());
 
-		volver.addActionListener(new ActionListener() {//anula oyente teclado
+		volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}        
 		});
 
 		barraSuperior.add(panelVolver);
-
 		this.setFocusable(true);
-
 		setContentPane(contentPane);
 		setLocationRelativeTo(null);
 	}

@@ -15,7 +15,6 @@ public class Zero extends Enemigo{
 		velocidad = 5;
 	}
 
-	@Override
 	public void disminuirVida(int daño) {
 		vida = vida-daño;
 		if(vida < 0)
@@ -23,13 +22,12 @@ public class Zero extends Enemigo{
 	}
 	
 	public void aparecer() {
-		Enemigo inf = this;
 		Timer timer = new Timer();
 		TimerTask timer_task = new TimerTask() {
 			@Override
 			public void run() {
 				if (juego.jugando())
-					movimiento = new EstrategiaZero(inf, Vertical.ARRIBA);
+					movimiento = new EstrategiaZero(Zero.this, Vertical.ARRIBA);
 				timer.cancel();// se ejecuta una vez el run y se cancela el timer
 			};
 		};
@@ -41,7 +39,6 @@ public class Zero extends Enemigo{
 		return new BalaBasica(new Point(entidad_graf.getX(), entidad_graf.getY() + 40), Vertical.ABAJO);
 	}
 
-	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}

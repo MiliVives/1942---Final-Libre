@@ -10,7 +10,6 @@ public class VerticalRemove extends Vertical {
 		super(entidad, direccion);
 	}
 
-	@Override
 	public void mover() {
 		if(direccion == Vertical.ABAJO)
 			moverAbajo();
@@ -31,11 +30,9 @@ public class VerticalRemove extends Vertical {
 		EntidadGrafica g = entidad.getGrafico();
 		int siguientePosY = g.getY() + this.direccion * entidad.getVelocidad();
 
-		if (siguientePosY < 0) {
+		if (siguientePosY < -165) { 
 				entidad.eliminar();
 		}else
 				g.setLocation(g.getX(), siguientePosY);
-		
-	
 	}
 }

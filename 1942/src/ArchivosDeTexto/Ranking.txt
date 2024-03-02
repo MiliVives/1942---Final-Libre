@@ -2,4 +2,4 @@ pepe - 1300
 Mili - 700
 SIUUU - 600
 Balti - 500
-Lucio - 400
+Ingrese su nombre - 500

@@ -14,8 +14,6 @@ public class OrangePOW extends PremioTemporal{
 	}
 
 	public void accept(Visitor visitor) {
-		visitor.visit(this);
-		
+		visitor.visit(this);	
 	}
-
 }

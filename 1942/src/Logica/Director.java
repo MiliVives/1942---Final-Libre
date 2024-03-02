@@ -17,7 +17,6 @@ public class Director {
 	private int nivelActual;
 	private int ultimoNivel;
 	private BuilderNivel builder;
-
 	private final int tandasPorNivel = 2;
 
 	public Director() {
@@ -35,8 +34,9 @@ public class Director {
 				// recorre cada columna de la matriz, cada iteracion correspondera a un tipo de
 				// avion distinto
 				cantEnemigos = enemigosPorNivel[nivelActual * tandasPorNivel + n][j];
-				for (int i = 0; i < cantEnemigos; i++)
+				for (int i = 0; i < cantEnemigos; i++) {
 					builder.construirEnemigo(j);
+				}
 			}
 			builder.siguienteTanda();
 		}

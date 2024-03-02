@@ -6,7 +6,7 @@ import Entidades.Entidad;
 import Entidades.EntidadesDecoracion;
 import Entidades.Fukusuke;
 import Entidades.Jugador;
-import Entidades.ProyectilMortal;
+import Entidades.Planeta;
 import Entidades.ProyectilNormal;
 import Entidades.ProyectilNormalLateral;
 import Entidades.Qing;
@@ -82,15 +82,16 @@ public abstract class Visitor {
 		
 	}
 
-	public void visit(ProyectilMortal proyectilMortal) {
-		
-	}
-
 	public void visit(EntidadesDecoracion entidadesDecoracion) {
 		
 	}
 
 	public void visit(ProyectilNormalLateral proyectilNormalLateral) {
+		
+	}
+
+	public void visit(Planeta planeta) {
+		// TODO Auto-generated method stub
 		
 	}
 }

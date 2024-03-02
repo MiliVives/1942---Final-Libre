@@ -9,9 +9,7 @@ public class EliminarTotal extends EstrategiaMovimiento {
 		super(entidad, direccion);
 	}
 
-	@Override
 	public void mover() {
 		entidad.eliminar();
-
 	}
 }

@@ -2,7 +2,6 @@ package Entidades;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
 import EntidadesGraficas.LabelAvionLateral;
 import EstadosArma.ConArmaNormalLateral;
 import EstadosArma.EstadoArma;
@@ -19,7 +18,7 @@ import Visitors.Visitor;
 public class AvionLateral extends Jugador {
 	protected EstadoArma estado_arma;
 	protected EstadoJugador estado_avion;
-	protected int vidas, tiros, desplazamientoI;
+	protected int vidas, tiros, desplazamientoI, tipo;
 	protected Jugador jugadorPadre;
 	private boolean restandoVida;
 
@@ -28,11 +27,12 @@ public class AvionLateral extends Jugador {
 		jugadorPadre = j;
 		entidad_graf = new LabelAvionLateral();
 		desplazamientoI = 0;
-		if(i == -1) { 
-			desplazamientoI = -30;
+		tipo = i;
+		if(tipo == -1) { 
+			desplazamientoI = -60;
 			movimiento = new HorizontalAvionLateralIzquierdo(this, Horizontal.DERECHA);
 		}else { 
-			desplazamientoI = 50;
+			desplazamientoI = 75;
 			movimiento = new HorizontalAvionLateralDerecha(this, Horizontal.DERECHA);
 		}
 		entidad_graf.setBounds(jugadorPadre.getGrafico().getX()+desplazamientoI, jugadorPadre.getGrafico().getY(), entidad_graf.getWidth(), entidad_graf.getHeight());
@@ -65,28 +65,29 @@ public class AvionLateral extends Jugador {
 	}
 
 	public void decrementarVidas() {
-//		if(jugadorPadre.getRestandoVidas() == false) {
-//			restandoVida = true;
+		if(jugadorPadre.getRestandoVidas() == false) { 
+			restandoVida = true; 
 			estado_avion.decrementarVidaJugador();
 
 			if (vidas <= 0) {
-				jugadorPadre.destruirNave(this);
+				jugadorPadre.destruirNave(tipo);
 				juego.eliminarEntidad(this);
 			}
-//		}
+		} 
+ 
 	}
 
 	public void accionar() {
 		if(jugadorPadre.getCreando() == false) {
 			if (juego.moviendoDerecha()) {
-				if(desplazamientoI == -1)  
+				if(tipo == -1)  
 					movimiento = new HorizontalAvionLateralIzquierdo(this, Horizontal.DERECHA);
 				else movimiento = new HorizontalAvionLateralDerecha(this, Horizontal.DERECHA);
 				this.movimiento.mover();
 			}
 
 			if (juego.moviendoIzquierda()) {
-				if(desplazamientoI == -1) 
+				if(tipo == -1) 
 					movimiento = new HorizontalAvionLateralIzquierdo(this, Horizontal.IZQUIERDA);
 				else movimiento = new HorizontalAvionLateralDerecha(this, Horizontal.IZQUIERDA);
 				this.movimiento.mover();
@@ -115,7 +116,6 @@ public class AvionLateral extends Jugador {
 				setEstadoJugador(new EstadoInmune(this));
 				System.out.println("SOY INMUNE LOCOO");
 				setEstadoArma(new SinArma(this));
-				//			((LabelJugador) entidad_graf).setDiveo(true);
 				Timer timer = new Timer();
 				timer.schedule(new TimerTask() {
 					public void run() {
@@ -169,5 +169,9 @@ public class AvionLateral extends Jugador {
 
 	public int getPuntos() {
 		return puntos;
+	}
+
+	public int getTipo() {
+		return tipo;
 	}
 }

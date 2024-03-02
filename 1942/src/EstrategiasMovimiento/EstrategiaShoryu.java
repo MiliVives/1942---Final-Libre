@@ -8,17 +8,12 @@ public class EstrategiaShoryu extends EstrategiaMovimiento {
 	public static final int DERECHA = 1;
 	public static final int IZQUIERDA = -1;
 
-    private int targetX = 300; 
-    private boolean llegue = false;
-    private int equis;
-
     public EstrategiaShoryu(Entidad entidad, int direccion) {
         super(entidad, direccion); 
     	LabelShoryu lS = (LabelShoryu) entidad.getGrafico();
     	lS.setDireccion(direccion);
     }
 
-    @Override
     public void mover() {
     	if(direccion == DERECHA)
     		moverD();
@@ -45,7 +40,5 @@ public class EstrategiaShoryu extends EstrategiaMovimiento {
 			entidad.eliminar();
 		}else 
 			g.setLocation(siguientePosX, siguientePosY);
-    }
-    
-
+	}
 }

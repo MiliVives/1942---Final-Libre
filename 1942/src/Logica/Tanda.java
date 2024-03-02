@@ -2,7 +2,6 @@ package Logica;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import Entidades.Enemigo;
 
 /**
@@ -29,8 +28,8 @@ public class Tanda {
 	}
 
 	public void aparecer() {
-		for (Enemigo i : aviones) {
-			i.aparecer();
+		for (Enemigo e : aviones) {
+			e.aparecer();
 		}
 	}
 

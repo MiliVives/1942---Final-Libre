@@ -2,7 +2,6 @@ package GUI;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import Logica.Juego;
 
 public class OyenteTeclado implements KeyListener {
@@ -12,11 +11,9 @@ public class OyenteTeclado implements KeyListener {
 		juego = j;
 	}
 
-	@Override
 	public void keyTyped(KeyEvent e) {
 	}
 
-	@Override
 	public void keyPressed(KeyEvent e) {
 		int codigoTecla = e.getKeyCode();
 		if (codigoTecla == KeyEvent.VK_LEFT || codigoTecla == KeyEvent.VK_A) {
@@ -39,7 +36,6 @@ public class OyenteTeclado implements KeyListener {
 		}
 	}
 
-	@Override
 	public void keyReleased(KeyEvent e) {
 		int codigoTecla = e.getKeyCode();
 		if (codigoTecla == KeyEvent.VK_LEFT || codigoTecla == KeyEvent.VK_A) {
@@ -60,7 +56,5 @@ public class OyenteTeclado implements KeyListener {
 		if(codigoTecla == KeyEvent.VK_ENTER) {
 			juego.setDiveo(false);
 		}
-
 	}
-
 }

@@ -1,7 +1,6 @@
 package EntidadesGraficas;
 
 import java.awt.Point;
-
 import javax.swing.ImageIcon;
 
 public class LabelGrayPOW extends LabelPremioEspecial{
@@ -12,5 +11,4 @@ public class LabelGrayPOW extends LabelPremioEspecial{
 		this.setIcon(imagen);
 		reDimensionar(this, imagen);
 	}
-	
 }

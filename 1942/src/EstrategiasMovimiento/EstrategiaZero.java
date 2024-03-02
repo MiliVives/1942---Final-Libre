@@ -14,7 +14,6 @@ public class EstrategiaZero extends EstrategiaMovimiento {
         super(entidad, direccion);
     }
 
-    @Override
     public void mover() {
     	
     	if(objetivoAlcanzado == false) {
@@ -60,7 +59,7 @@ public class EstrategiaZero extends EstrategiaMovimiento {
         lz.setAbajo();
         int siguientePosY = g.getY() - this.direccion * entidad.getVelocidad();
 
-        if (siguientePosY >= limiteY) {
+        if (siguientePosY > limiteY+100) {
             entidad.eliminar();
         } else {
             g.setLocation(g.getX(), siguientePosY);

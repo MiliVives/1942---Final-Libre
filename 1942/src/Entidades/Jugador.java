@@ -2,7 +2,6 @@ package Entidades;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
 import EntidadesGraficas.LabelJugador;
 import EstadosArma.ConArmaNormal;
 import EstadosArma.EstadoArma;
@@ -10,7 +9,6 @@ import EstadosArma.SinArma;
 import EstadosJugador.EstadoInicial;
 import EstadosJugador.EstadoInmune;
 import EstadosJugador.EstadoJugador;
-import EstrategiasMovimiento.EliminarTotal;
 import EstrategiasMovimiento.Horizontal;
 import EstrategiasMovimiento.HorizontalJugadorLimiteDerecha;
 import EstrategiasMovimiento.HorizontalJugadorLimiteIzquierda;
@@ -50,7 +48,6 @@ public class Jugador extends Entidad {
 
 	public boolean getRestandoVidas() {
 		return restandoVida;
-//		restandoVida = true;
 	}
 
 	public void restarVida() {
@@ -58,7 +55,8 @@ public class Jugador extends Entidad {
 			avionDerecho.restarVida();
 		else if(avionIzquierdo != null)
 			avionIzquierdo.restarVida();
-		else vidas--;
+		else
+			vidas--;
 		restandoVida = false;
 	}
 
@@ -67,7 +65,6 @@ public class Jugador extends Entidad {
 	}
 
 	public void decrementarVidas() {
-		/*
 		if(avionDerecho != null) {
 			if(avionDerecho.getRestandoVidas() == false) {
 				restandoVida = true;
@@ -89,7 +86,7 @@ public class Jugador extends Entidad {
 				}
 			}
 		}
-		*/
+		
 		estado_jugador.decrementarVidaJugador();
 
 		if (vidas <= 0) {
@@ -164,7 +161,7 @@ public class Jugador extends Entidad {
 					timer.cancel();
 				}
 
-			}, 0,5 * 1000);
+			}, 1 * 1000);
 		}
 
 		if(avionDerecho == null) { 
@@ -243,8 +240,8 @@ public class Jugador extends Entidad {
 		return avionIzquierdo;
 	}
 
-	public void destruirNave(AvionLateral avionLateral) {
-		if(avionDerecho == avionLateral)
+	public void destruirNave(int tipo) {
+		if(tipo == 1)
 			avionDerecho = null;
 		else avionIzquierdo = null;
 

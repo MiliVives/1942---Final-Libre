@@ -9,6 +9,7 @@ public class Fukusuke extends Enemigo{
 
 	public Fukusuke(Point p, int duracion, boolean enEspera) {
 		super(new LabelFukusuke(p), duracion, enEspera);
+		velocidad = 2;
 	}
 
 	@Override
@@ -22,7 +23,6 @@ public class Fukusuke extends Enemigo{
 		return new BalaBasica(new Point(entidad_graf.getX(), entidad_graf.getY() + 40), Vertical.ABAJO);
 	}
 
-	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}

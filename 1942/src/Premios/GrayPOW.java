@@ -17,5 +17,4 @@ public class GrayPOW extends PremioEspecial{
 		visitor.visit(this);
 		
 	}
-
 }

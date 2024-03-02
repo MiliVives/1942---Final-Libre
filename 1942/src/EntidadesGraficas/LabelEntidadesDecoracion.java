@@ -3,7 +3,6 @@ package EntidadesGraficas;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.Random;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -27,9 +26,9 @@ public class LabelEntidadesDecoracion extends LabelEnemigo {
 	
 	public void reDimensionar(JLabel label, ImageIcon grafico) {
 		if (grafico.getImage() != null) {
-			grafico.setImage(grafico.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+			grafico.setImage(grafico.getImage().getScaledInstance(10, 10, Image.SCALE_DEFAULT));
 			label.setIcon(grafico);
 			label.repaint();
 		}	
-	}
+	} 
 }

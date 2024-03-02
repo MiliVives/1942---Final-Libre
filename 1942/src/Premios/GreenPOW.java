@@ -1,7 +1,6 @@
 package Premios;
 
 import java.awt.Point;
-
 import EntidadesGraficas.LabelGreenPOW;
 import Visitors.Visitor;
 import Visitors.VisitorGreenPOW;
@@ -15,8 +14,6 @@ public class GreenPOW extends PremioEspecial{
 	}
 
 	public void accept(Visitor visitor) {
-		visitor.visit(this);
-		
+		visitor.visit(this);	
 	}
-
 }

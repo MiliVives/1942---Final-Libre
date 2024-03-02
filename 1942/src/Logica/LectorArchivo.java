@@ -8,23 +8,21 @@ import java.io.InputStreamReader;
 
 /**
  * clase que se encarga de leer el archivo que indica en que cantidades se
- * genera los infectados de cada tipo de cada tanda
+ * genera los enemigos de cada tipo de cada tanda
  */
+
 public class LectorArchivo {
 
 	String rutaArchivo = "ArchivosDeTexto/Generacion.txt";
 
-	private int cantTiposEnemigos = 7; //VER DE CAMBIAR CANTIDAD ENEEMIGOS
+	private int cantTiposEnemigos = 6; 
 	private int cantTandas = 6;
 
 	/**
 	 * devuelve el contenido del archivo en forma de matriz
-	 * 
-	 * @param dificultad indica de que archivo se realizara la lectura
-	 * @return matriz en la que cada fila i de la matriz representa una tanda cada
-	 *         columna j representa un tipo de infectado. entoces el numero en (i,j)
-	 *         representa la cantidad de infectados de tipo j en la tanda i
+	 *
 	 */
+	
 	public int[][] obtenerMatrizEnemigo() {
 
 		int[][] toReturn = new int[cantTandas][cantTiposEnemigos];

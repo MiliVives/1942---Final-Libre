@@ -2,13 +2,13 @@ package Logica;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import Entidades.Enemigo;
 
 /**
  * clase que modela un nivel, almacena los enemigos en cada tanda
  *
  */
+
 public class Nivel {
 
 	private int valor; // num de nivel, para el fondo
@@ -26,9 +26,8 @@ public class Nivel {
 
 	/**
 	 * metodo que se llama durante la construccion del nivel
-	 * 
-	 * @param t tanda a agregar al nivel
 	 */
+	
 	public void agregarTanda(Tanda t) {
 		tandas.add(t);
 	}
@@ -40,12 +39,12 @@ public class Nivel {
 	public void eliminarEnemigo(Enemigo e) {
 		Tanda tanda = tandas.get(tandaActual);
 		tanda.eliminarEnemigo(e);
-		if (tanda.vacia()) { // ya se elimino todos los enemigos de la tanda
-			if (tandaActual + 1 < tandas.size()) { // quedan tandas en el nivel
+		if (tanda.vacia()) { 						// ya se elimino todos los enemigos de la tanda
+			if (tandaActual + 1 < tandas.size()) { 	// quedan tandas en el nivel
 				tandaActual++;
 				tandas.get(tandaActual).aparecer();
 			} else {
-				juego.nivelCompleto(); // si ya no quedan tandas se le notifica al juego que el nivel fue completa
+				juego.nivelCompleto(); 				// si ya no quedan tandas se le notifica al juego que el nivel fue completa
 			}
 		}
 	}
@@ -61,5 +60,4 @@ public class Nivel {
 	public Tanda getTanda() {
 		return tandas.get(tandaActual);
 	}
-
 }

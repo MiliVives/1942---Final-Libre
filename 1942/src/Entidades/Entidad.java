@@ -10,6 +10,7 @@ import Visitors.Visitor;
  * Clase que modela la Entidad del juego
  *
  */
+
 public abstract class Entidad extends Element {
 	protected int velocidad;
 	protected EntidadGrafica entidad_graf;
@@ -27,7 +28,6 @@ public abstract class Entidad extends Element {
 		this.movimiento.mover();
 	}
 	
-	@Override
 	public abstract void accept(Visitor visitor);
 
 	public void setMovimiento(EstrategiaMovimiento movimiento) {

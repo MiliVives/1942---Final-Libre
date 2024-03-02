@@ -10,5 +10,4 @@ public abstract class PremioEspecial extends Premio{
 	}
 	
 	public abstract void accept(Visitor visitor);
-
 }

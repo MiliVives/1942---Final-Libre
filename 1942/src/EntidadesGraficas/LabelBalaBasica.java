@@ -2,7 +2,6 @@ package EntidadesGraficas;
 
 import java.awt.Image;
 import java.awt.Point;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -17,7 +16,7 @@ public class LabelBalaBasica extends LabelBala {
 	
 	public void reDimensionar(JLabel label, ImageIcon grafico) {
 		if (grafico.getImage() != null) {
-			grafico.setImage(grafico.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+			grafico.setImage(grafico.getImage().getScaledInstance(label.getWidth()-10, label.getHeight()-10, Image.SCALE_DEFAULT));
 			label.setIcon(grafico);
 			label.repaint();
 		}	

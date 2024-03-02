@@ -1,14 +1,13 @@
 package Entidades;
 
 import java.awt.Point;
+
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import EntidadesGraficas.LabelShoryu;
 import EstrategiasMovimiento.EstrategiaShoryu;
 import EstrategiasMovimiento.Vertical;
-import EstrategiasMovimiento.VerticalRemove;
 import Visitors.Visitor;
 
 public class Shoryu extends Enemigo{
@@ -17,7 +16,6 @@ public class Shoryu extends Enemigo{
 		super(new LabelShoryu(p), duracion, enEspera);
 	}
 
-	@Override
 	public void disminuirVida(int daño) {
 		vida = vida-daño;
 		if(vida < 0)
@@ -48,7 +46,6 @@ public class Shoryu extends Enemigo{
 		return new BalaBasica(new Point(entidad_graf.getX(), entidad_graf.getY() + 40), Vertical.ABAJO);
 	}
 
-	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}

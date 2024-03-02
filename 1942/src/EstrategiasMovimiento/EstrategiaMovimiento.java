@@ -1,7 +1,6 @@
 package EstrategiasMovimiento;
 
 import java.awt.Container;
-
 import Entidades.Entidad;
 import Logica.Juego;
 
@@ -12,14 +11,12 @@ public abstract class EstrategiaMovimiento {
 
 	/**
 	 * Crea la estrategia de movimiento de la entidad
-	 * @param entidad 
-	 * @param direccion
+	 * 
 	 */
+	
 	public EstrategiaMovimiento(Entidad entidad, int direccion) {
 		this.direccion = direccion;
 		this.entidad = entidad;
-		if(Juego.getJuego() == null)
-			System.out.println("el juego es nulo");
 		if(Juego.getJuego().getMapa() != null && entidad.getGrafico() != null) {
 			Container mapa = Juego.getJuego().getMapa();
 			limiteX = (int) mapa.getWidth() - (int) entidad.getGrafico().getWidth();
@@ -30,12 +27,14 @@ public abstract class EstrategiaMovimiento {
 	/**
 	 * Mueve la entidad a su posicion siguiente 
 	 */
+	
 	public abstract void mover();
 
 	/**
 	 * Settea la direccionde movimiento de la entidad
-	 * @param direccion
+	 * 
 	 */
+	
 	public void setDireccion(int direccion) {
 		this.direccion = direccion;
 	}

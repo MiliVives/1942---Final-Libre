@@ -3,7 +3,6 @@ package Entidades;
 import java.awt.Point;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import EntidadesGraficas.LabelDaihiryu;
 import EstrategiasMovimiento.Vertical;
 import EstrategiasMovimiento.VerticalRemove;
@@ -14,18 +13,18 @@ public class Daihiryu extends Enemigo{
 	public Daihiryu(Point p, int duracion, boolean enEspera) {
 		super(new LabelDaihiryu(p), duracion, enEspera);
 		vida = 50;
+		velocidad = 3;
 	}
 
 	
 	public void aparecer() {
-		Enemigo inf = this;
 		Timer timer = new Timer();
 		TimerTask timer_task = new TimerTask() {
 			@Override
 			public void run() {
 				if (juego.jugando())
 					movimiento = new VerticalRemove(Daihiryu.this, Vertical.ARRIBA);
-				timer.cancel();// se ejecuta una vez el run y se cancela el timer
+				timer.cancel();
 			};
 		};
 

@@ -14,11 +14,10 @@ public class FactoryDaihiryu extends Factory {
 		super();
 	}
 
-	@Override
 	public Enemigo crearEnemigo(boolean enEspera) {
 		Point p = posicion();
 		Enemigo ene = new Daihiryu(p, tiempo, enEspera);
-		tiempo = tiempo + 5000;// cada enemigo aparecera con una diferencia de 5 segundos
+		tiempo = tiempo + 5000;
 		return ene;
 	}
 
@@ -26,7 +25,6 @@ public class FactoryDaihiryu extends Factory {
 		return new Point(r.nextInt(mapa.getWidth() - 60), mapa.getHeight()+100); //CAMBIAR POSICION SPAWN
 	}
 
-	@Override
 	protected void reiniciar() {
 		tiempo = 1;
 	}

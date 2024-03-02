@@ -4,11 +4,11 @@ import javax.swing.ImageIcon;
 
 public class LabelJugador extends EntidadGrafica {
 	
-	private String[] rutasImagen = { "/RecursosGraficos_Jugador/avionInicial.png", "/RecursosGraficos_Jugador/diveo1.gif"};
+	private String[] rutasImagen = { "/RecursosGraficos_Jugador/avionInicial.gif", "/RecursosGraficos_Jugador/diveo1.gif"};
 
 	public LabelJugador() {
 		super();
-		this.setSize(70, 55);
+		this.setSize(70, 70);
 		ImageIcon imagen = new ImageIcon(getClass().getResource(rutasImagen[0]));
 		this.setIcon(imagen);
 		reDimensionar(this, imagen);
@@ -16,13 +16,10 @@ public class LabelJugador extends EntidadGrafica {
 		this.setVisible(true);
 	}
 
-	/**
-	 * metodo utilizado para cambiar la imagen del jugador cuando posee alguna
-	 * mejora.
+	/*
+	 * método para cambiar el gráfico del jugador por el gif de maniobra
 	 * 
-	 * @param mejoras Arreglo de booleans que representan las mejoras que recibi� el
-	 *                jugador. No se tiene en cuenta los primeros elementos del
-	 *                arreglo ya que seran los que no afectan directamente al jugador
+	 * 
 	 */
 	
 	public void setDiveo(boolean diveo) {

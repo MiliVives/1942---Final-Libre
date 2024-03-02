@@ -5,6 +5,7 @@ import Entidades.Enemigo;
 /**
  * clase que se encarga de la construccion de un nivel
  */
+
 public class BuilderDefault extends BuilderNivel {
 
 	private Tanda tandaActual;
@@ -19,21 +20,18 @@ public class BuilderDefault extends BuilderNivel {
 		misFabricas.add(new FactoryShoryu());
 		misFabricas.add(new FactoryFukusuke());
 		misFabricas.add(new FactoryZero());
-		misFabricas.add(new FactoryEntidadesDecoracion());
 		
 		nivelesCreados = 0;
 		tandaActual = new Tanda();
 		primerTanda = true;
 	}
 
-	@Override
 	public void reset() {
 		nivel = new Nivel(nivelesCreados);
 		tandaActual = new Tanda();
 		primerTanda = true;
 	}
 
-	@Override
 	public void construirEnemigo(int tipoEnemigo) {
 		// tipoEnemigo debe coincidir con un indice valido de la lista de fabricas.
 		// el tipo i es creado por la fabrica i
@@ -43,7 +41,6 @@ public class BuilderDefault extends BuilderNivel {
 		tandaActual.agregarEnemigo(ene);
 	}
 
-	@Override
 	public Nivel getNivel() {
 		Nivel aRetornar = nivel;
 		nivel = new Nivel(nivelesCreados);
@@ -52,14 +49,12 @@ public class BuilderDefault extends BuilderNivel {
 		return aRetornar;
 	}
 
-	@Override
 	public void siguienteTanda() {
 		for (Factory f : misFabricas) {
 			f.reiniciar();
 		}
 		nivel.agregarTanda(tandaActual);
-		tandaActual = new Tanda(); // se crea la proxima tanda
+		tandaActual = new Tanda(); 
 		primerTanda = false;
 	}
-
 }

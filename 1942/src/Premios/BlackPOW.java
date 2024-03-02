@@ -17,5 +17,4 @@ public class BlackPOW extends PremioEspecial{
 		visitor.visit(this);
 		
 	}
-
 }

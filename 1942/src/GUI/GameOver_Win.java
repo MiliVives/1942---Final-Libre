@@ -4,27 +4,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
-
 import Logica.Ranking;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -32,11 +20,8 @@ public class GameOver_Win extends JFrame implements Disposable{
 
 	private JPanel contentPane;
 	private Ranking ranking;
-	
-	/**
-	 * Create the frame.
-	 */
-	public GameOver_Win(int p, int puntaje) {// si es 1 entonces gano, 0 caso contrario :)
+
+	public GameOver_Win(int p, int puntaje, GUI gui) {// si es 1 entonces gano, 0 caso contrario 
 		
 		ranking = new Ranking("src/ArchivosDeTexto/Ranking.txt");
 		setIconImage(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/icon.png")).getImage());
@@ -71,6 +56,8 @@ public class GameOver_Win extends JFrame implements Disposable{
 		JButton salir = new JButton("");
 		salir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gui.frenarMusicaGO();
+				gui.setGameOver(false);
 				dispose();
 			}
 		});
@@ -91,7 +78,6 @@ public class GameOver_Win extends JFrame implements Disposable{
 			public void actionPerformed(ActionEvent arg0) {
 				VentanaRanking rankingWindow = new VentanaRanking(GameOver_Win.this);
 			 	rankingWindow.setVisible(true);
-			 	//dispose
 			}
 		});
 		botonRanking.setBounds(817, 11, 91, 65);
@@ -122,7 +108,7 @@ public class GameOver_Win extends JFrame implements Disposable{
 		
 		JPanel panelBox = new JPanel();
 		panelBox.setLayout(new FlowLayout());
-		panelBox.setBounds(300, 180, 300, 60); // Adjust the bounds as needed
+		panelBox.setBounds(300, 180, 300, 60); 
 		panelBox.add(miBox);
 		panelBox.setOpaque(false);
 		contentPane.add(panelBox);

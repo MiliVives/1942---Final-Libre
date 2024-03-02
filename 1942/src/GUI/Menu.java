@@ -16,9 +16,6 @@ public class Menu extends JFrame implements Disposable{
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		SplashScreen splash = new SplashScreen(2000);
 		splash.showSplash();
@@ -58,13 +55,11 @@ public class Menu extends JFrame implements Disposable{
 		botonNormal.setBackground(Color.BLACK);
 		botonNormal.setBorder(new EmptyBorder(0, 0, 0, 0)); 
 		botonNormal.setIcon(new ImageIcon(Menu.class.getResource("/RecursosGraficos_Extras/start.gif")));
-		// botonNormal.setOpaque(true);
 		botonNormal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				GUI frame = new GUI();
 				frame.setVisible(true);
-				// frame.setResizable(false);
 				dispose();
 			}
 		});
@@ -75,12 +70,10 @@ public class Menu extends JFrame implements Disposable{
 		botonRanking.setBorder(new LineBorder(Color.BLACK));
 		botonRanking.setBackground(new Color(0, 0, 0));
 		botonRanking.setIcon(new ImageIcon(Menu.class.getResource("/RecursosGraficos_Extras/ranking.png")));
-		// botonNormal.setOpaque(true);
 		botonRanking.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				VentanaRanking rankingWindow = new VentanaRanking(Menu.this);
 			 	rankingWindow.setVisible(true);
-			 	//dispose
 			}
 		});
 		botonRanking.setBounds(817, 11, 91, 65);

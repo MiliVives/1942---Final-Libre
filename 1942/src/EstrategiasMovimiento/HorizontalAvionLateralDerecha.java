@@ -6,13 +6,12 @@ import EntidadesGraficas.EntidadGrafica;
 public class HorizontalAvionLateralDerecha extends EstrategiaMovimiento {
 	public static final int DERECHA = 1;
 	public static final int IZQUIERDA = -1;
-	private int limiteAvionX = 100;
+	private int limiteAvionX = 125;
 
 	public HorizontalAvionLateralDerecha(Entidad entidad, int direccion) {
 		super(entidad, direccion);
 	}
 
-	@Override
 	public void mover() {
 		EntidadGrafica g = this.entidad.getGrafico();
 		int siguientePosX = g.getX() + this.direccion * entidad.getVelocidad();
@@ -24,6 +23,5 @@ public class HorizontalAvionLateralDerecha extends EstrategiaMovimiento {
 			else
 				g.setLocation(siguientePosX, g.getY());
 		}
-
 	}
 }

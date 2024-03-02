@@ -9,7 +9,6 @@ public class EstadoInmune extends EstadoJugador {
 		velocidad = jugador.getVelocidad();
 	}
 
-	@Override
 	public void decrementarVidaJugador() {
 		//no hace nada porque es inmune 
 	}

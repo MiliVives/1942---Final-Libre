@@ -1,10 +1,8 @@
 package EntidadesGraficas;
 
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import Logica.Juego;
 
 public abstract class EntidadGrafica extends JLabel {

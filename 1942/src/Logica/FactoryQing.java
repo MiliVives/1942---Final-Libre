@@ -1,24 +1,24 @@
 package Logica;
 
 import java.awt.Point;
-
 import Entidades.Enemigo;
 import Entidades.Qing;
+
 /**
  * clase que se encarga de construir los enemigos tipo Qing
  *
  */
+
 public class FactoryQing extends Factory {
 
 	public FactoryQing() {
 		super();
 	}
 
-	@Override
 	public Enemigo crearEnemigo(boolean enEspera) {
 		Point p = posicion();
 		Enemigo ene = new Qing(p, tiempo, enEspera);
-		tiempo = tiempo + 1000;// cada enemigo aparecera con una diferencia de 5 segundos
+		tiempo = tiempo + 1000;
 		return ene;
 	}
 
@@ -26,9 +26,7 @@ public class FactoryQing extends Factory {
 		return new Point(150, mapa.getHeight()+100); //CAMBIAR POSICION SPAWN
 	}
 
-	@Override
 	protected void reiniciar() {
 		tiempo = 1;
 	}
-
 }

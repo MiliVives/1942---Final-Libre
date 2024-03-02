@@ -13,10 +13,9 @@ public class Qing extends Enemigo{
 
 	public Qing(Point p, int duracion, boolean enEspera) {
 		super(new LabelQing(p), duracion, enEspera);
-		velocidad = 2;
+		velocidad = 3;
 	}
 
-	@Override
 	public void disminuirVida(int daño) {
 		vida = vida-daño;
 		if(!muerto && vida < 0)
@@ -32,7 +31,7 @@ public class Qing extends Enemigo{
 			public void run() {
 				if (juego.jugando())
 					movimiento = new VerticalRemove(inf, Vertical.ARRIBA);
-				timer.cancel();// se ejecuta una vez el run y se cancela el timer
+				timer.cancel();
 			};
 		};
 
@@ -43,7 +42,6 @@ public class Qing extends Enemigo{
 		return new BalaBasica(new Point(entidad_graf.getX(), entidad_graf.getY() + 40), Vertical.ARRIBA);
 	}
 
-	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}

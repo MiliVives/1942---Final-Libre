@@ -1,7 +1,6 @@
 package EntidadesGraficas;
 
 import java.awt.Point;
-
 import javax.swing.ImageIcon;
 
 public class LabelBlackPOW extends LabelPremioEspecial{

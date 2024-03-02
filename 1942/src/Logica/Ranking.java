@@ -44,7 +44,6 @@ public class Ranking {
     public void addPlayer(String player, int puntaje) {
         Player formateado = new Player(player, puntaje);
         players.add(formateado);
-        // Sort the players based on their scores in descending order
         Collections.sort(players, (p1, p2) -> Integer.compare(p2.getScore(), p1.getScore()));
         while (players.size() > 5) {
             players.remove(players.size() - 1);
@@ -60,14 +59,14 @@ public class Ranking {
         if (row >= 0 && row < players.size()) {
             return players.get(row).getName();
         }
-        return null; // Handle invalid row
+        return null; 
     }
 
     public String puntajeJugador(int row) {
         if (row >= 0 && row < players.size()) {
             return String.valueOf(players.get(row).getScore());
         }
-        return null; // Handle invalid row
+        return null; 
     }
 
     public void displayRanking() {

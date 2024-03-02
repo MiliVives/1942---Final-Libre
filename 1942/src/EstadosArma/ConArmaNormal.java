@@ -12,7 +12,6 @@ public class ConArmaNormal extends EstadoArma {
 		super(jugador);
 	}
 
-	@Override
 	public Proyectil disparar() {
 		EntidadGrafica g = this.jugador.getGrafico();
 		return new ProyectilNormal(new Point(g.getX(), g.getY() - 30));

@@ -8,25 +8,24 @@ import Entidades.Fukusuke;
  * clase que se encarga de construir los enemigos tipo Fukuske
  *
  */
+
 public class FactoryFukusuke extends Factory {
 
 	public FactoryFukusuke() {
 		super();
 	}
 
-	@Override
 	public Enemigo crearEnemigo(boolean enEspera) {
 		Point p = posicion();
 		Enemigo ene = new Fukusuke(p, tiempo, enEspera);
-		tiempo = tiempo + 5000;// cada enemigo aparecera con una diferencia de 5 segundos
+		tiempo = tiempo + 1000;
 		return ene;
 	}
 
 	private Point posicion() {
-		return new Point(r.nextInt(mapa.getWidth() - 60), -100); //CAMBIAR POSICION SPAWN
+		return new Point(r.nextInt(mapa.getWidth() - 60), -100); 
 	}
 
-	@Override
 	protected void reiniciar() {
 		tiempo = 1;
 	}

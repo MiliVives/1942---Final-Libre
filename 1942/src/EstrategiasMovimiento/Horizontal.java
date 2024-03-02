@@ -11,7 +11,6 @@ public class Horizontal extends EstrategiaMovimiento {
 		super(entidad, direccion);
 	}
 
-	@Override
 	public void mover() {
 		EntidadGrafica g = this.entidad.getGrafico();
 		int siguientePosX = g.getX() + this.direccion * entidad.getVelocidad();
@@ -23,6 +22,5 @@ public class Horizontal extends EstrategiaMovimiento {
 			else
 				g.setLocation(siguientePosX, g.getY());
 		}
-
 	}
 }
