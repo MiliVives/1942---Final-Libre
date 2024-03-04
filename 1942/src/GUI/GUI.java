@@ -37,7 +37,7 @@ public class GUI extends JFrame {
 		
 		this.setResizable(false);
 
-		setIconImage(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/icon.png")).getImage());
+		setIconImage(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/icon.jpg")).getImage());
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 700);
@@ -265,7 +265,10 @@ public class GUI extends JFrame {
 	 */
 	
 	public void frenarMusicaGO() {
-		musicaGO.stop();
+		if (musicaGO != null && musicaGO.isRunning()) {
+			System.out.println("Stopping musicaGO");
+			musicaGO.stop();
+		}
 	}
 
 	/**

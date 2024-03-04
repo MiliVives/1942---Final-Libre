@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public class LabelJugador extends EntidadGrafica {
 	
-	private String[] rutasImagen = { "/RecursosGraficos_Jugador/avionInicial.gif", "/RecursosGraficos_Jugador/diveo1.gif"};
+	private String[] rutasImagen = { "/RecursosGraficos_Jugador/avionInicial.gif", "/RecursosGraficos_Jugador/diveo.gif", "/RecursosGraficos_Jugador/inmune.gif"};
 
 	public LabelJugador() {
 		super();
@@ -26,5 +26,11 @@ public class LabelJugador extends EntidadGrafica {
 		if(diveo == true) {
 			super.reDimensionar(this, new ImageIcon(LabelJugador.class.getResource(rutasImagen[1])));
 		}else super.reDimensionar(this, new ImageIcon(LabelJugador.class.getResource(rutasImagen[0])));
+	}
+	
+	public void setInmune(boolean inmune) {
+		if(inmune == true)
+			super.reDimensionar(this, new ImageIcon(LabelJugador.class.getResource(rutasImagen[2])));
+		else super.reDimensionar(this, new ImageIcon(LabelJugador.class.getResource(rutasImagen[0])));
 	}
 }

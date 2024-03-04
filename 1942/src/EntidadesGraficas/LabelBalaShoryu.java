@@ -5,11 +5,11 @@ import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class LabelBalaBasica extends LabelBala {
+public class LabelBalaShoryu extends LabelBala {
 
-	public LabelBalaBasica(Point p) {
+	public LabelBalaShoryu(Point p) {
 		super(p);
-		ImageIcon imagen = new ImageIcon(getClass().getResource("/RecursosGraficos_Enemigos/BalaBasica.png"));
+		ImageIcon imagen = new ImageIcon(getClass().getResource("/RecursosGraficos_Enemigos/BalaBasicaI.png"));
 		this.setIcon(imagen);
 		reDimensionar(this, imagen);
 	}

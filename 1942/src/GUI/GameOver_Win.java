@@ -56,7 +56,6 @@ public class GameOver_Win extends JFrame implements Disposable{
 		JButton salir = new JButton("");
 		salir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gui.frenarMusicaGO();
 				gui.setGameOver(false);
 				dispose();
 			}

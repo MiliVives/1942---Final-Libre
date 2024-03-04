@@ -33,6 +33,7 @@ class FondoPanel extends JLayeredPane {
 
 	public void pantallaNivel(int nivel) {// 1, 2, .... , n 		
 		this.nivelTransicionLabel.setIcon(new ImageIcon(getClass().getResource(this.nivelesTransicion[nivel])));
+		this.setComponentZOrder(nivelTransicionLabel,0);
 		this.nivelTransicionLabel.setVisible(true);
 		this.nivelTransicionLabel.repaint();
 		this.nivelTransicionLabel.setBounds(this.getX(), (this.getY() + this.getHeight() - 165) / 2, this.getWidth(),165);

@@ -1,11 +1,14 @@
 package Entidades;
 
 import java.awt.Point;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import EntidadesGraficas.LabelZero;
+import EstrategiasMovimiento.EliminarTotal;
 import EstrategiasMovimiento.EstrategiaZero;
 import EstrategiasMovimiento.Vertical;
+import Logica.GeneradorDePremio;
 import Visitors.Visitor;
 
 public class Zero extends Enemigo{
@@ -17,8 +20,31 @@ public class Zero extends Enemigo{
 
 	public void disminuirVida(int daño) {
 		vida = vida-daño;
-		if(vida < 0)
-			super.desaparecer();
+		if(vida < 0) {
+			desaparecer();
+		}
+	}
+	
+	public void desaparecer() {
+		LabelZero li = (LabelZero) this.getGrafico();
+		li.seMato();
+		if (suelta_premio) {
+			GeneradorDePremio.generar(entidad_graf.getLocation());
+		}
+		if(muerto == false) {
+			juego.sumarPuntos(puntos);
+			muerto = true;
+		}
+		
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			public void run() {
+				movimiento = new EliminarTotal(Zero.this,1);
+				timer.cancel();
+			}
+
+		}, 1 * 1000);
+
 	}
 	
 	public void aparecer() {
@@ -36,7 +62,7 @@ public class Zero extends Enemigo{
 	}
 
 	public Proyectil disparar() {
-		return new BalaBasica(new Point(entidad_graf.getX(), entidad_graf.getY() + 40), Vertical.ABAJO);
+		return new BalaBasicaShoryu(new Point(entidad_graf.getX(), entidad_graf.getY() + 40), Vertical.ABAJO);
 	}
 
 	public void accept(Visitor visitor) {

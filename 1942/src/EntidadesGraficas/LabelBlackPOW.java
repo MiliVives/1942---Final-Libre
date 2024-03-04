@@ -7,7 +7,7 @@ public class LabelBlackPOW extends LabelPremioEspecial{
 
 	public LabelBlackPOW(Point p) {
 		super(p);
-		ImageIcon imagen = new ImageIcon(getClass().getResource("/RecursosGraficos_Premios/BlackPOW.png"));
+		ImageIcon imagen = new ImageIcon(getClass().getResource("/RecursosGraficos_Premios/BlackPOW.gif"));
 		this.setIcon(imagen);
 		reDimensionar(this, imagen);
 	}

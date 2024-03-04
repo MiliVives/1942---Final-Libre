@@ -10,6 +10,7 @@ public class OrangePOW extends PremioTemporal{
 	public OrangePOW(Point p) {
 		super(new LabelOrangePOW(p));
 		velocidad = 2;
+		duracion = 3000;
 		visitor = new VisitorOrangePOW(this);		
 	}
 

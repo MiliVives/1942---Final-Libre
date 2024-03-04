@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 import Entidades.Entidad;
 import Entidades.Jugador;
+import EntidadesGraficas.LabelJugador;
 import EstadosJugador.EstadoInmune;
 import EstadosJugador.EstadoJugador;
 import Logica.Juego;
@@ -21,14 +22,16 @@ public class VisitorOrangePOW extends VisitorPremioTemporal{
 		
 		EstadoJugador estado_actual = jug.getEstadoJugador();
 		jug.setEstadoJugador(new EstadoInmune(jug));
-		PremioTemporal p = (PremioTemporal) entidad;
 		entidad.eliminar();
+		LabelJugador j1 = (LabelJugador) jug.getGrafico();
+		j1.setInmune(true);
 		Timer timer = new Timer();
 		TimerTask timer_task = new TimerTask() {
 
 			@Override
 			public void run() {
 				jug.setEstadoJugador(estado_actual);
+				j1.setInmune(false);
 				this.cancel();
 			};
 		};

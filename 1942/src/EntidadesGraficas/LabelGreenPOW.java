@@ -7,7 +7,7 @@ public class LabelGreenPOW extends LabelPremioEspecial{
 
 	public LabelGreenPOW(Point p) {
 		super(p);
-		ImageIcon imagen = new ImageIcon(getClass().getResource("/RecursosGraficos_Premios/GreenPOW.png"));
+		ImageIcon imagen = new ImageIcon(getClass().getResource("/RecursosGraficos_Premios/GreenPOW.gif"));
 		this.setIcon(imagen);
 		reDimensionar(this, imagen);
 	}

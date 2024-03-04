@@ -6,11 +6,13 @@ import javax.swing.ImageIcon;
 import Logica.Juego;
 
 public abstract class LabelEnemigo extends EntidadGrafica {
-
-	private String explotado = "/RecursosGraficos_Enemigos/explosion.gif";
+	
+	protected boolean muerto;
+	protected String explotado = "/RecursosGraficos_Enemigos/explosion.gif";
 
 	public LabelEnemigo(Point p) {
 		super();
+		muerto = false;
 		this.setSize(80, 80);
 		this.setLocation(p);
 	}
@@ -26,5 +28,10 @@ public abstract class LabelEnemigo extends EntidadGrafica {
 		this.setIcon(imagen);
 		this.setBounds(getX(), getY(), 100, 75);
 		this.repaint();
+		muerto = true;
+	}
+	
+	public boolean estaMuerto() {
+		return muerto;
 	}
 }

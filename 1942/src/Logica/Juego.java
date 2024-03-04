@@ -12,6 +12,7 @@ import Entidades.EntidadesDecoracion;
 import Entidades.Jugador;
 import Entidades.Planeta;
 import EntidadesGraficas.EntidadGrafica;
+import EntidadesGraficas.LabelAvionLateral;
 import EntidadesGraficas.LabelJugador;
 import GUI.GUI;
 

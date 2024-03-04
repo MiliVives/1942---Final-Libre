@@ -1,5 +1,6 @@
 package Visitors;
 
+import Entidades.Bala;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import Entidades.Proyectil;
@@ -11,7 +12,7 @@ public class VisitorBala extends Visitor{
 	}
 	
 	public void visit(Jugador j) {
-		Proyectil p = (Proyectil) entidad;
+		Bala p = (Bala) entidad;
 		p.eliminar();
 		j.decrementarVidas();
 		j.decrementarVidas(); //resta mas vida que el resto

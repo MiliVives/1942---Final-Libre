@@ -8,6 +8,7 @@ import EntidadesGraficas.LabelEnemigo;
 import EstrategiasMovimiento.EliminarTotal;
 import EstrategiasMovimiento.Vertical;
 import EstrategiasMovimiento.VerticalRemove;
+import EstrategiasMovimiento.VerticalRemoveEnemigo;
 import Logica.GeneradorDePremio;
 import Visitors.VisitorEnemigo;
 
@@ -63,7 +64,7 @@ public abstract class Enemigo extends Entidad {
 			@Override
 			public void run() {
 				if (juego.jugando())
-					movimiento = new VerticalRemove(inf, Vertical.ABAJO);
+					movimiento = new VerticalRemoveEnemigo(inf, Vertical.ABAJO);
 				timer.cancel();
 			};
 		};

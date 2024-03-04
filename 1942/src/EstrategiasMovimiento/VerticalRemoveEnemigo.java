@@ -4,23 +4,27 @@ import Entidades.Entidad;
 import EntidadesGraficas.EntidadGrafica;
 import EntidadesGraficas.LabelEnemigo;
 
-public class VerticalRemove extends Vertical {
+public class VerticalRemoveEnemigo extends Vertical {
+	private LabelEnemigo entidadGraf;
 
-	public VerticalRemove(Entidad entidad, int direccion) {
+	public VerticalRemoveEnemigo(Entidad entidad, int direccion) {
 		super(entidad, direccion);
 	}
 
 	public void mover() {
+		entidadGraf = (LabelEnemigo) entidad.getGrafico();
+		if(!entidadGraf.estaMuerto()) {
 			if(direccion == Vertical.ABAJO)
 				moverAbajo();
 			else moverArriba();
+		}
 	}
 
 	private void moverAbajo() {
 		EntidadGrafica g = entidad.getGrafico();
 		int siguientePosY = g.getY() + this.direccion * entidad.getVelocidad();
 
-		if (siguientePosY > limiteY) {
+		if (siguientePosY > limiteY+entidad.getGrafico().getHeight()) {
 			entidad.eliminar();
 		}else 
 			g.setLocation(g.getX(), siguientePosY);
@@ -30,7 +34,7 @@ public class VerticalRemove extends Vertical {
 		EntidadGrafica g = entidad.getGrafico();
 		int siguientePosY = g.getY() + this.direccion * entidad.getVelocidad();
 
-		if (siguientePosY < 0) { 
+		if (siguientePosY < -entidad.getGrafico().getHeight()) { 
 			entidad.eliminar();
 		}else
 			g.setLocation(g.getX(), siguientePosY);

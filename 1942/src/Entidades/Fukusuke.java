@@ -1,8 +1,15 @@
 package Entidades;
 
 import java.awt.Point;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import EntidadesGraficas.LabelDaihiryu;
 import EntidadesGraficas.LabelFukusuke;
+import EstrategiasMovimiento.EliminarTotal;
 import EstrategiasMovimiento.Vertical;
+import EstrategiasMovimiento.VerticalRemoveEnemigo;
+import Logica.GeneradorDePremio;
 import Visitors.Visitor;
 
 public class Fukusuke extends Enemigo{
@@ -12,7 +19,29 @@ public class Fukusuke extends Enemigo{
 		velocidad = 2;
 	}
 
-	@Override
+	
+	public void desaparecer() {
+		LabelFukusuke li = (LabelFukusuke) this.getGrafico();
+		li.seMato();
+		if (suelta_premio) {
+			GeneradorDePremio.generar(entidad_graf.getLocation());
+		}
+		if(muerto == false) {
+			juego.sumarPuntos(puntos);
+			muerto = true;
+		}
+		
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			public void run() {
+				movimiento = new EliminarTotal(Fukusuke.this,1);
+				timer.cancel();
+			}
+
+		}, 1 * 1000);
+
+	}
+	
 	public void disminuirVida(int daño) {
 		vida = vida-daño;
 		if(vida < 0)
@@ -20,7 +49,7 @@ public class Fukusuke extends Enemigo{
 	}
 
 	public Proyectil disparar() {
-		return new BalaBasica(new Point(entidad_graf.getX(), entidad_graf.getY() + 40), Vertical.ABAJO);
+		return new BalaBasicaShoryu(new Point(entidad_graf.getX()+15, entidad_graf.getY() + 40), Vertical.ABAJO);
 	}
 
 	public void accept(Visitor visitor) {

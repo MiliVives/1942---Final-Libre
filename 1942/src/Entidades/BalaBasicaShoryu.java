@@ -2,14 +2,16 @@ package Entidades;
 
 import java.awt.Point;
 
+import Entidades.BalaBasica;
 import EntidadesGraficas.LabelBalaBasica;
+import EntidadesGraficas.LabelBalaShoryu;
 import EstrategiasMovimiento.Vertical;
 import EstrategiasMovimiento.VerticalRemove;
 
-public class BalaBasica extends Bala {
+public class BalaBasicaShoryu extends Bala {
 
-	public BalaBasica(Point posicion, int pos) {
-		super(new LabelBalaBasica(posicion));
+	public BalaBasicaShoryu(Point posicion, int pos) {
+		super(new LabelBalaShoryu(posicion));
 		velocidad = 6;
 		damage = 5;
 		rango = 400;

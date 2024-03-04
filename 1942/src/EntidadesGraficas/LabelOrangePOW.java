@@ -7,7 +7,7 @@ public class LabelOrangePOW extends LabelPremioTemporal {
 
 	public LabelOrangePOW(Point p) {
 		super(p);
-		ImageIcon imagen = new ImageIcon(getClass().getResource("/RecursosGraficos_Premios/OrangePOW.png"));
+		ImageIcon imagen = new ImageIcon(getClass().getResource("/RecursosGraficos_Premios/OrangePOW.gif"));
 		this.setIcon(imagen);
 		reDimensionar(this, imagen);
 	}
