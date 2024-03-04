@@ -18,7 +18,7 @@ public class FactoryFukusuke extends Factory {
 	public Enemigo crearEnemigo(boolean enEspera) {
 		Point p = posicion();
 		Enemigo ene = new Fukusuke(p, tiempo, enEspera);
-		tiempo = tiempo + 1000;
+		tiempo = tiempo + 3000;
 		return ene;
 	}
 

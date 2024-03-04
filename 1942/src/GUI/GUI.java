@@ -26,6 +26,7 @@ public class GUI extends JFrame {
 	private Juego juego;
 	private Thread hiloJuego;
 	private JLabel[] estados;
+	private String[] niveles = {"/RecursosGraficosNiveles/fondo.png", "/RecursosGraficosNiveles/fondo1.png", "/RecursosGraficosNiveles/fondo2.png"};
 	private JLabel fondoJuego;
 	private boolean gameOver;
 	Clip musica, musicaGO;
@@ -184,7 +185,7 @@ public class GUI extends JFrame {
 	 */
 	
 	public void cambioNivel(int nivel) {
-		URL imageUrl = getClass().getResource("/RecursosGraficosNiveles/fondo.png");
+		URL imageUrl = getClass().getResource(niveles[nivel-1]);
 		ImageIcon gifIcon = new ImageIcon(imageUrl);
 		fondoJuego.setIcon(gifIcon);
 		panelJuego.moveToBack(fondoJuego);
@@ -266,7 +267,6 @@ public class GUI extends JFrame {
 	
 	public void frenarMusicaGO() {
 		if (musicaGO != null && musicaGO.isRunning()) {
-			System.out.println("Stopping musicaGO");
 			musicaGO.stop();
 		}
 	}

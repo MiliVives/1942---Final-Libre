@@ -18,7 +18,7 @@ public class FactoryZero extends Factory {
 	public Enemigo crearEnemigo(boolean enEspera) {
 		Point p = posicion();
 		Enemigo ene = new Zero(p, tiempo, enEspera);
-		tiempo = tiempo + 5000;
+		tiempo = tiempo + 3000;
 		return ene;
 	}
 

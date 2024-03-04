@@ -16,7 +16,7 @@ public class FactoryRaizan extends Factory {
 	public Enemigo crearEnemigo(boolean enEspera) {
 		Point p = posicion();
 		Enemigo ene = new Raizan(p, tiempo, enEspera);
-		tiempo = tiempo + 1000;// cada enemigo aparecera con una diferencia de 5 segundos
+		tiempo = tiempo + 3000;
 		return ene;
 	}
 
