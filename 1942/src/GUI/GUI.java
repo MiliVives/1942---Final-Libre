@@ -246,7 +246,7 @@ public class GUI extends JFrame {
 	}
 	
 	/**
-	 * Frena la musica de victoria o perdida
+	 * Frena la musica de victoria o perdida.
 	 */
 	
 	public void frenarMusicaGO() {
@@ -256,7 +256,7 @@ public class GUI extends JFrame {
 	}
 	
 	/**
-	 * Activa el sonido de disparo
+	 * Activa el sonido de disparo.
 	 */
 	
 	public void sonidoDisparar() {
@@ -272,7 +272,7 @@ public class GUI extends JFrame {
 	}
 
 	/**
-	 * Activa el sonido de habeer agarrado un premio
+	 * Activa el sonido de haber agarrado un premio.
 	 */
 	
 	
@@ -287,6 +287,10 @@ public class GUI extends JFrame {
 			System.out.println("error audio");
 		}
 	}
+	
+	/**
+	 * Activa el sonido de haber matado un enemigo.
+	 */
 	
 	public void sonidoMuerte() {
 		try {

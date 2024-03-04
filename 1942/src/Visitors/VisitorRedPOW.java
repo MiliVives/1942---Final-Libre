@@ -5,7 +5,7 @@ import Entidades.Jugador;
 import Logica.Juego;
 
 /*
- * Visitor del powerUP reedPOW.
+ * Visitor del powerUP redPOW.
  * 
  */
 

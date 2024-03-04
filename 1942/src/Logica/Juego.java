@@ -155,18 +155,18 @@ public class Juego implements Runnable {
 	}
 
 	public void nivelCompleto() {
-		if (director.finJuego()) {	// el director se encarga de saber si existe un proximo nivel
+		if (director.finJuego()) {				// el director se encarga de saber si existe un proximo nivel
 			int puntaje = jugador.getPuntos();
-			juego = null;	// se setea nulo para que al empezar otra partida se cree otra instancia deJuego
+			juego = null;						// se setea nulo para que al empezar otra partida se cree otra instancia deJuego
 			gui.gano(puntaje);
-			jugando = false;	// corta la ejecucion del juego
+			jugando = false;					// corta la ejecucion del juego
 		} else {
 			siguienteNivel();
 		}
 	}
 
 	private void siguienteNivel() {
-		for (Entidad e : entidades) {// se remueve las entidades del mapa excepto el jugador y el fondo (proyectiles, premios,etc)
+		for (Entidad e : entidades) {			// se remueve las entidades del mapa excepto el jugador y el fondo (proyectiles, premios,etc)
 			if (e != jugador && e != jugador.getNaveDerecha() && e != jugador.getNaveIzquierda() && e != p) {
 				for(EntidadesDecoracion eD : estrellas)
 					if(e != eD)
