@@ -4,6 +4,11 @@ import Entidades.Entidad;
 import EntidadesGraficas.EntidadGrafica;
 import EntidadesGraficas.LabelShoryu;
 
+/**
+ * Clase que modela el movimiento del Shoryu.
+ * Hace una especie de loop.
+ */
+
 public class EstrategiaShoryu extends EstrategiaMovimiento {
 	public static final int DERECHA = 1;
 	public static final int IZQUIERDA = -1;

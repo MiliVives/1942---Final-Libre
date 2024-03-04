@@ -15,6 +15,13 @@ import EstrategiasMovimiento.HorizontalJugadorLimiteIzquierda;
 import EstrategiasMovimiento.Vertical;
 import Visitors.Visitor;
 
+/*
+ * Clase que modela al jugador. 
+ * Tiene un arma, un estado propio, vida, puntos y una cierta cantidad de tiros.
+ * Puede tener aviones laterales.
+ * 
+ */
+
 public class Jugador extends Entidad {
 	protected EstadoArma estado_arma;
 	protected EstadoJugador estado_jugador;

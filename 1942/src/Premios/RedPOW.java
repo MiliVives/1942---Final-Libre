@@ -5,6 +5,11 @@ import EntidadesGraficas.LabelRedPOW;
 import Visitors.Visitor;
 import Visitors.VisitorRedPOW;
 
+/**
+ * Clase que modela al powerUp RedPOW.
+ * Da 1000 puntos al jugador.
+ */
+
 public class RedPOW extends PremioEspecial{
 
 	public RedPOW(Point p) {

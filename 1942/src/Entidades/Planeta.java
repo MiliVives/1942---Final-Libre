@@ -12,6 +12,11 @@ import EstrategiasMovimiento.Vertical_loop;
 import Visitors.Visitor;
 import Visitors.VisitorEntidadesDecoracion;
 
+/*
+ * Clase que modela un tipo de entidad decorativa.
+ * 
+ */
+
 public class Planeta extends EntidadesDecoracion{
 
 	public Planeta(Point p, int duracion, boolean enEspera) {

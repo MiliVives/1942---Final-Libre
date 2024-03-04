@@ -118,7 +118,11 @@ public class VentanaRanking extends JFrame{
 		    gbc.gridy = i + 1; 
 		    gbc.anchor = GridBagConstraints.CENTER;
 		    gbc.insets = new Insets(10, 20, 10, 20);
-
+		    
+		    pos.setBackground(Color.BLACK);
+		    label.setBackground(Color.BLACK);
+		    puntaje.setBackground(Color.BLACK);
+		    
 		    labelsPanel.add(pos, gbc);
 
 		    gbc.gridx = 1;

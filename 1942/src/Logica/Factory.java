@@ -5,8 +5,8 @@ import java.util.Random;
 import Entidades.Enemigo;
 
 /**
- * clase abstracta que modela la creacion de los infectados, cada tipo concreto
- * de Factory realiza la construccion de un tipo distinto de Infectado
+ * clase abstracta que modela la creacion de los enemigos, cada tipo concreto
+ * de Factory realiza la construccion de un tipo distinto de Enemigo
  */
 
 public abstract class Factory {

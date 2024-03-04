@@ -12,6 +12,11 @@ import EstadosJugador.EstadoJugador;
 import Logica.Juego;
 import Premios.PremioTemporal;
 
+/*
+ * Visitor del powerUP orangePOW.
+ * 
+ */
+
 public class VisitorOrangePOW extends VisitorPremioTemporal{
 
 	public VisitorOrangePOW(PremioTemporal entidad) {
@@ -24,6 +29,7 @@ public class VisitorOrangePOW extends VisitorPremioTemporal{
 		EstadoJugador estado_actual = jug.getEstadoJugador();
 		jug.setEstadoJugador(new EstadoInmune(jug));
 		entidad.eliminar();
+		Juego.getJuego().premioAgarrado();
 		LabelJugador j1 = (LabelJugador) jug.getGrafico();
 		j1.setInmune(true);
 		Timer timer = new Timer();

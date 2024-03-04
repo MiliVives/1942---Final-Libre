@@ -2,6 +2,10 @@ package EstadosJugador;
 
 import Entidades.Jugador;
 
+/**
+ * Clase que modela el estado del jugador cuando divea o agarra el powerUp powOrange.
+ */
+
 public class EstadoInmune extends EstadoJugador {
 
 	public EstadoInmune(Jugador jugador) {

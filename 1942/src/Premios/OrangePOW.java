@@ -5,6 +5,11 @@ import EntidadesGraficas.LabelOrangePOW;
 import Visitors.Visitor;
 import Visitors.VisitorOrangePOW;
 
+/**
+ * Clase que modela al powerUp OrangePOW.
+ * Da inmunidad por 3 segundos.
+ */
+
 public class OrangePOW extends PremioTemporal{
 
 	public OrangePOW(Point p) {

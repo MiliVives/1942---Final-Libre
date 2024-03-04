@@ -5,7 +5,7 @@ import Entidades.Enemigo;
 import Entidades.EntidadesDecoracion;
 
 /**
- * clase que se encarga de construir las entidades de decoracion (estrellas)
+ * clase que se encarga de construir las entidades de decoracion (estrellas/planetas)
  *
  */
 

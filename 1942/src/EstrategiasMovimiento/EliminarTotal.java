@@ -2,8 +2,11 @@ package EstrategiasMovimiento;
 
 import Entidades.Entidad;
 
-public class EliminarTotal extends EstrategiaMovimiento {
+/**
+ * Clase que modela la eliminacion de la entidad.
+ */
 
+public class EliminarTotal extends EstrategiaMovimiento {
 
 	public EliminarTotal(Entidad entidad, int direccion) {
 		super(entidad, direccion);

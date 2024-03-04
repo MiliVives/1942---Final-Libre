@@ -6,6 +6,11 @@ import Entidades.Proyectil;
 import Entidades.ProyectilNormalLateral;
 import EntidadesGraficas.EntidadGrafica;
 
+/*
+ * Clase que representa el estado normal de un avion lateral.
+ * 
+ */
+
 public class ConArmaNormalLateral extends EstadoArma {
 
 	public ConArmaNormalLateral(AvionLateral jugador) {

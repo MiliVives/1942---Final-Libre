@@ -1,5 +1,10 @@
 package EstadosArma;
 
+/*
+ * Clase que representa el estado default del jugador.
+ * 
+ */
+
 import java.awt.Point;
 import Entidades.Jugador;
 import Entidades.Proyectil;

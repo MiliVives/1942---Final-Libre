@@ -3,6 +3,9 @@ package EstrategiasMovimiento;
 import Entidades.EntidadesDecoracion;
 import EntidadesGraficas.EntidadGrafica;
 
+/**
+ * Clase que modela el movimiento de las estrellas y planetas.
+ */
 
 public class Vertical_loop_estrellas extends Vertical {
 

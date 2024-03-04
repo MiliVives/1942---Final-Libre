@@ -1,6 +1,5 @@
 package Visitors;
 
-import Entidades.Bala;
 import Entidades.Daihiryu;
 import Entidades.Entidad;
 import Entidades.Fukusuke;
@@ -9,6 +8,11 @@ import Entidades.Qing;
 import Entidades.Raizan;
 import Entidades.Shoryu;
 import Entidades.Zero;
+
+/*
+ * Visitor del proyectil del jugador.
+ * 
+ */
 
 public class VisitorProyectilNormal extends Visitor{
 

@@ -9,6 +9,12 @@ import EstrategiasMovimiento.Vertical_loop_estrellas;
 import Visitors.Visitor;
 import Visitors.VisitorEntidadesDecoracion;
 
+/*
+ * Clase que modela las entidades con las que no se colisiona porque son decoración del mapa.
+ * Pueden ser estrellas o planetas.
+ * 
+ */
+
 public class EntidadesDecoracion extends Enemigo{
 
 	public EntidadesDecoracion(Point p, int duracion, boolean enEspera) {

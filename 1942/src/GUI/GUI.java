@@ -30,7 +30,7 @@ public class GUI extends JFrame {
 	private JLabel fondoJuego;
 	private boolean gameOver;
 	Clip musica, musicaGO;
-	Clip disparo;
+	Clip disparo, muerte, premioAgarrado;
 
 	public GUI() {
 		
@@ -206,22 +206,6 @@ public class GUI extends JFrame {
 	public void actualizarVida(int vida) {
 		estados[0].setText(""+vida+"");
 	}
-
-	/**
-	 * Activa el sonido de disparo
-	 */
-	
-	public void sonidoDisparar() {
-		try {
-			disparo = AudioSystem.getClip();
-			disparo.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/disparo.wav")));
-			disparo.start();
-		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-			e.printStackTrace();
-			e.getMessage();
-			System.out.println("error audio");
-		}
-	}
 	
 	
 	/**
@@ -270,21 +254,49 @@ public class GUI extends JFrame {
 			musicaGO.stop();
 		}
 	}
+	
+	/**
+	 * Activa el sonido de disparo
+	 */
+	
+	public void sonidoDisparar() {
+		try {
+			disparo = AudioSystem.getClip();
+			disparo.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/disparo.wav")));
+			disparo.start();
+		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+			e.printStackTrace();
+			e.getMessage();
+			System.out.println("error audio");
+		}
+	}
 
 	/**
-	 * Activa el sonido de muerto
+	 * Activa el sonido de habeer agarrado un premio
 	 */
+	
+	
+	public void sonidoPremio() {
+		try {
+			premioAgarrado= AudioSystem.getClip();
+			premioAgarrado.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/premio.wav")));
+			premioAgarrado.start();
+		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+			e.printStackTrace();
+			e.getMessage();
+			System.out.println("error audio");
+		}
+	}
 	
 	public void sonidoMuerte() {
 		try {
-			Clip m;
-			m = AudioSystem.getClip();
-			m.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/death.wav")));
-			m.start();
+			muerte = AudioSystem.getClip();
+			muerte.open(AudioSystem.getAudioInputStream(getClass().getResource("/RecursosWAV/death.wav")));
+			muerte.start();
 			Timer timer = new Timer();
 			timer.schedule(new TimerTask() {
 				public void run() {
-					m.stop();
+					muerte.stop();
 					timer.cancel();
 				}
 

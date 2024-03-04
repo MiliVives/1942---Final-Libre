@@ -16,6 +16,12 @@ import EstrategiasMovimiento.Vertical;
 import Visitors.Visitor;
 import Visitors.VisitorAvionLateral;
 
+/*
+ * Clase que modela aviones laterales que se unen al jugador al agarrar el powerUp Gray
+ * 
+ */
+
+
 public class AvionLateral extends Jugador {
 	protected EstadoArma estado_arma;
 	protected EstadoJugador estado_avion;

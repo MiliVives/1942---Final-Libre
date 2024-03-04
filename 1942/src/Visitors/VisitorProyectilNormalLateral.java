@@ -1,15 +1,18 @@
 package Visitors;
 
-import Entidades.Bala;
 import Entidades.Daihiryu;
 import Entidades.Entidad;
 import Entidades.Fukusuke;
-import Entidades.ProyectilNormal;
 import Entidades.ProyectilNormalLateral;
 import Entidades.Qing;
 import Entidades.Raizan;
 import Entidades.Shoryu;
 import Entidades.Zero;
+
+/*
+ * Visitor del proyectil de los aviones laterales de los jugadores.
+ * 
+ */
 
 public class VisitorProyectilNormalLateral extends Visitor{
 

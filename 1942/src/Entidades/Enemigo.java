@@ -7,10 +7,16 @@ import EntidadesGraficas.EntidadGrafica;
 import EntidadesGraficas.LabelEnemigo;
 import EstrategiasMovimiento.EliminarTotal;
 import EstrategiasMovimiento.Vertical;
-import EstrategiasMovimiento.VerticalRemove;
 import EstrategiasMovimiento.VerticalRemoveEnemigo;
 import Logica.GeneradorDePremio;
 import Visitors.VisitorEnemigo;
+
+/**
+ * Crea un enemigo que posee una entidad gráfica, un tiempo de espera hasta aparecer y
+ * un booleano que lo habilita a aparecer.
+ * Algunos sueltan premios.
+ * Hay 5 tipos de enemigos: Qing, Raizan, Fukusuke, Shoryu y Zero.
+ */
 
 public abstract class Enemigo extends Entidad {
 	protected int vida;
@@ -19,20 +25,8 @@ public abstract class Enemigo extends Entidad {
 	protected int tiempoEspera;
 	protected int damage, puntos;
 	protected boolean quieto;
-
 	protected Random random;
-
-	/**
-	 * Crea un enemigo
-	 * 
-	 * @param entidad_graf entidad grafica de la entidad
-	 * @param duracion     tiempo que permanecer� quieto el enemigo, en
-	 *                     milisegundos desde que empieza su tanda
-	 * @param enEspera     parametro necesario para saber si el enemigo que se
-	 *                     crea pertene a la primer tanda(en ese caso no estara en
-	 *                     espera) o y si deberia quedarse quieto hasta que se
-	 *                     notifique(cuando se llegue a su tanda)
-	 */
+	
 	public Enemigo(EntidadGrafica entidad_graf, int duracion, boolean enEspera) {
 		super(entidad_graf);
 		velocidad = 1;

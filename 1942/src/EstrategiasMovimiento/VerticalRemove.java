@@ -2,7 +2,10 @@ package EstrategiasMovimiento;
 
 import Entidades.Entidad;
 import EntidadesGraficas.EntidadGrafica;
-import EntidadesGraficas.LabelEnemigo;
+
+/**
+ * Clase que modela el movimiento de los proyectiles.
+ */
 
 public class VerticalRemove extends Vertical {
 

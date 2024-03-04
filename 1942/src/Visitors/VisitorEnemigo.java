@@ -4,7 +4,11 @@ import Entidades.AvionLateral;
 import Entidades.Enemigo;
 import Entidades.Entidad;
 import Entidades.Jugador;
-import Entidades.ProyectilNormal;
+
+/*
+ * Visitor de enemigo.
+ * 
+ */
 
 public class VisitorEnemigo extends Visitor{
 

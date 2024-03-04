@@ -2,6 +2,11 @@ package Entidades;
 
 import EntidadesGraficas.EntidadGrafica;
 
+/*
+ * Clase que modela los disparos de enemigos y jugador
+ * 
+ */
+
 public abstract class Proyectil extends Entidad {
 	protected int damage;
 

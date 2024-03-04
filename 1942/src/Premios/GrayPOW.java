@@ -5,6 +5,11 @@ import EntidadesGraficas.LabelGrayPOW;
 import Visitors.Visitor;
 import Visitors.VisitorGrayPOW;
 
+/*
+ * Clase que modela al powerUp GrayPOW.
+ * Crea los aviones laterales del jugador.
+ */
+
 public class GrayPOW extends PremioEspecial{
 
 	public GrayPOW(Point p) {

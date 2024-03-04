@@ -3,6 +3,11 @@ package EstadosArma;
 import Entidades.Jugador;
 import Entidades.Proyectil;
 
+/*
+ * Representa el estado del arma de un jugador.
+ * 
+ */
+
 public abstract class EstadoArma {
 	protected int velocidad_disparo;
 	protected Jugador jugador;

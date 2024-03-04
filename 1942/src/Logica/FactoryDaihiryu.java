@@ -16,7 +16,7 @@ public class FactoryDaihiryu extends Factory {
 
 	public Enemigo crearEnemigo(boolean enEspera) {
 		Point p = posicion();
-		Enemigo ene = new Daihiryu(p, tiempo, enEspera);
+		Enemigo ene = new Daihiryu(p, tiempo+3000, enEspera);
 		tiempo = tiempo + 5000;
 		return ene;
 	}

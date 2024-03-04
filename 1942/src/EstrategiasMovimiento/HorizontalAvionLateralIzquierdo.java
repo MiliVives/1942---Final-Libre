@@ -3,6 +3,10 @@ package EstrategiasMovimiento;
 import Entidades.Entidad;
 import EntidadesGraficas.EntidadGrafica;
 
+/**
+ * Clase que modela el movimiento de una avion lateral izquierda.
+ */
+
 public class HorizontalAvionLateralIzquierdo extends EstrategiaMovimiento{
 	public static final int DERECHA = 1;
 	public static final int IZQUIERDA = -1;

@@ -20,8 +20,8 @@ import GUI.GUI;
  * clase que modela la logica del juego. se utilizo el patron de dise�o
  * singleton para que no se pueda tener dos instancias del juego distintas al
  * mismo tiempo y la instancia actual pueda se accedida desde cualquier parte
- * del programa. En esta clase se implementa la ejecucion principal del juego y
- * funciona como nexo entre la parte loguica y la gui
+ * del programa. 
+ * Funciona como nexo entre la parte loguica y la gui
  */
 
 public class Juego implements Runnable {
@@ -266,7 +266,7 @@ public class Juego implements Runnable {
 			jugador = new Jugador(true);
 			while (jugando) {
 				for (Entidad e : entidades) {
-					e.accionar();
+					e.accionar();		//pone en movimiento a las entidades
 				}
 				Thread.sleep(10);
 				removerEntidadesEliminadas();
@@ -323,9 +323,23 @@ public class Juego implements Runnable {
 		if(diveando == false)
 			gui.sonidoDisparar();
 	}
+	
+	/**
+	 * metodo para notificar al juego que se murio un enemigo
+	 */
+	
 	public void seMurio() {
 		if(gui != null)
 			gui.sonidoMuerte();
+	}
+	
+	/**
+	 * metodo para notificar al juego que se agarro un premio
+	 */
+	
+	public void premioAgarrado() {
+		if(gui != null)
+			gui.sonidoPremio();
 	}
 
 	public boolean jugando() {
@@ -335,6 +349,10 @@ public class Juego implements Runnable {
 	public boolean getEstadoPremio() {
 		return powerUpTemporal;
 	}
+	
+	/**
+	 * metodo para sumarle los puntos al jugador
+	 */
 	
 	public void sumarPuntos(int p) {
 		jugador.setPuntos(p);

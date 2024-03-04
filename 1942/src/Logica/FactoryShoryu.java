@@ -17,7 +17,7 @@ public class FactoryShoryu extends Factory {
 
 	public Enemigo crearEnemigo(boolean enEspera) {
 		Point p = posicion();
-		Enemigo ene = new Shoryu(p, tiempo, enEspera);
+		Enemigo ene = new Shoryu(p, tiempo+4000, enEspera);
 		tiempo = tiempo + 3000;
 		return ene;
 	}

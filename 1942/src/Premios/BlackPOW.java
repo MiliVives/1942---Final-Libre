@@ -5,6 +5,11 @@ import EntidadesGraficas.LabelBlackPOW;
 import Visitors.Visitor;
 import Visitors.VisitorBlackPOW;
 
+/**
+ * Clase que modela al powerUp BlackPOW.
+ * Incrementa la vida en 1.
+ */
+
 public class BlackPOW extends PremioEspecial{
 
 	public BlackPOW(Point p) {

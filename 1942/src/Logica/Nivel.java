@@ -11,7 +11,7 @@ import Entidades.Enemigo;
 
 public class Nivel {
 
-	private int valor; // num de nivel, para el fondo
+	private int valor; 			// num de nivel, para el fondo
 	private int tandaActual;
 	private Juego juego;
 

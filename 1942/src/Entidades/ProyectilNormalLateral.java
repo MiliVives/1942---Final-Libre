@@ -9,6 +9,11 @@ import Visitors.Visitor;
 import Visitors.VisitorProyectilNormal;
 import Visitors.VisitorProyectilNormalLateral;
 
+/*
+ * Proyectil de los aviones laterales en caso de tenerlos.
+ * 
+ */
+
 public class ProyectilNormalLateral extends Proyectil {
 
 	public ProyectilNormalLateral(Point posicion) {

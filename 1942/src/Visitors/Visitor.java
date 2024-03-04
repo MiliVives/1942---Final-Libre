@@ -19,6 +19,10 @@ import Premios.GrayPOW;
 import Premios.OrangePOW;
 import Premios.RedPOW;
 
+/**
+ * Clase que modela las interacciones al colisionar.
+ */
+
 public abstract class Visitor {
 	protected Entidad entidad;
 

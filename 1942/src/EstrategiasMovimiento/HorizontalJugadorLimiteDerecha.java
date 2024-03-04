@@ -3,6 +3,10 @@ package EstrategiasMovimiento;
 import Entidades.Entidad;
 import EntidadesGraficas.EntidadGrafica;
 
+/**
+ * Clase que modela el movimiento del jugador al tener un avion lateral derecho y se desea mover a derecha.
+ */
+
 public class HorizontalJugadorLimiteDerecha extends Horizontal {
 	public static final int DERECHA = 1;
 	public static final int IZQUIERDA = -1;

@@ -8,6 +8,7 @@ import Visitors.Visitor;
 
 /**
  * Clase que modela la Entidad del juego
+ * Todas tienen una determinada velocidad, entidad grafica y estrategia de movimiento.
  *
  */
 

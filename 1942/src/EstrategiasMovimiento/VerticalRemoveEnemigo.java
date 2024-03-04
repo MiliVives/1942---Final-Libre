@@ -4,6 +4,11 @@ import Entidades.Entidad;
 import EntidadesGraficas.EntidadGrafica;
 import EntidadesGraficas.LabelEnemigo;
 
+/*
+ * Clase que modela el movimiento de los enemigos y que desaparezcan en base a su altura de manerea adecuada (sin que se note).
+ * 
+ */
+
 public class VerticalRemoveEnemigo extends Vertical {
 	private LabelEnemigo entidadGraf;
 

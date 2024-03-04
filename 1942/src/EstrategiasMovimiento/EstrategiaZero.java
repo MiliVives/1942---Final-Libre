@@ -4,6 +4,11 @@ import Entidades.Entidad;
 import EntidadesGraficas.EntidadGrafica;
 import EntidadesGraficas.LabelZero;
 
+/**
+ * Clase que modela el movimiento del enemigo Zero.
+ * Se mueve en diagonal.
+ */
+
 public class EstrategiaZero extends EstrategiaMovimiento {
 
 	private int targetY = 100;

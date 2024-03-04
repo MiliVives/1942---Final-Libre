@@ -1,10 +1,13 @@
 package Entidades;
 
 import java.awt.Point;
-
 import EntidadesGraficas.LabelBalaBasica;
-import EstrategiasMovimiento.Vertical;
 import EstrategiasMovimiento.VerticalRemove;
+
+/*
+ * Implementacion principal de las balas enemigas
+ * 
+ */
 
 public class BalaBasica extends Bala {
 

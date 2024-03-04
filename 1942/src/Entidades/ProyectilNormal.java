@@ -8,6 +8,11 @@ import EstrategiasMovimiento.VerticalRemove;
 import Visitors.Visitor;
 import Visitors.VisitorProyectilNormal;
 
+/*
+ * Proyectil del jugador principal.
+ * 
+ */
+
 public class ProyectilNormal extends Proyectil {
 
 	public ProyectilNormal(Point posicion) {

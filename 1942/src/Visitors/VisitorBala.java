@@ -4,7 +4,11 @@ import Entidades.AvionLateral;
 import Entidades.Bala;
 import Entidades.Entidad;
 import Entidades.Jugador;
-import Entidades.Proyectil;
+
+/*
+ * Visitor de las balas del enemigo.
+ * 
+ */
 
 public class VisitorBala extends Visitor{
 

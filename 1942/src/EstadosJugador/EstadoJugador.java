@@ -2,6 +2,10 @@ package EstadosJugador;
 
 import Entidades.Jugador;
 
+/**
+ * Clase que modela el estado del jugador.
+ */
+
 public abstract class EstadoJugador {
 	protected Jugador jugador;
 	protected int velocidad;
