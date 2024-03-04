@@ -3,6 +3,7 @@ package Visitors;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import Entidades.AvionLateral;
 import Entidades.Entidad;
 import Entidades.Jugador;
 import EntidadesGraficas.LabelJugador;
@@ -36,6 +37,5 @@ public class VisitorOrangePOW extends VisitorPremioTemporal{
 			};
 		};
 		timer.schedule(timer_task, this.duracion, 1);
-		
 	}
 }

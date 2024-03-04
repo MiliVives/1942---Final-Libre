@@ -24,7 +24,7 @@ public class GameOver_Win extends JFrame implements Disposable{
 	public GameOver_Win(int p, int puntaje, GUI gui) {// si es 1 entonces gano, 0 caso contrario 
 		
 		ranking = new Ranking("src/ArchivosDeTexto/Ranking.txt");
-		setIconImage(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/icon.png")).getImage());
+		setIconImage(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/icon.jpg")).getImage());
 		
 		this.setResizable(false);
 		
@@ -40,6 +40,7 @@ public class GameOver_Win extends JFrame implements Disposable{
 		JButton tryAgain = new JButton("");
 		tryAgain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				gui.frenarMusicaGO();
 				Menu frame = new Menu();
 				frame.setVisible(true);
 				dispose();
@@ -55,7 +56,7 @@ public class GameOver_Win extends JFrame implements Disposable{
 		
 		JButton salir = new JButton("");
 		salir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {  
 				gui.setGameOver(false);
 				dispose();
 			}

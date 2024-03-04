@@ -14,6 +14,7 @@ import EstrategiasMovimiento.HorizontalAvionLateralDerecha;
 import EstrategiasMovimiento.HorizontalAvionLateralIzquierdo;
 import EstrategiasMovimiento.Vertical;
 import Visitors.Visitor;
+import Visitors.VisitorAvionLateral;
 
 public class AvionLateral extends Jugador {
 	protected EstadoArma estado_arma;
@@ -38,6 +39,7 @@ public class AvionLateral extends Jugador {
 		entidad_graf.setBounds(jugadorPadre.getGrafico().getX()+desplazamientoI, jugadorPadre.getGrafico().getY(), entidad_graf.getWidth(), entidad_graf.getHeight());
 		estado_arma = new ConArmaNormalLateral(this);
 		estado_avion = new EstadoInicial(this);
+		visitor = new VisitorAvionLateral(this);
 		vidas = 20;
 		tiros = 0;
 		puntos = 0;

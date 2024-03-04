@@ -324,7 +324,8 @@ public class Juego implements Runnable {
 			gui.sonidoDisparar();
 	}
 	public void seMurio() {
-		gui.sonidoMuerte();
+		if(gui != null)
+			gui.sonidoMuerte();
 	}
 
 	public boolean jugando() {

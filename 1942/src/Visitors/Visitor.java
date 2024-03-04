@@ -1,5 +1,6 @@
 package Visitors;
 
+import Entidades.AvionLateral;
 import Entidades.Bala;
 import Entidades.Daihiryu;
 import Entidades.Entidad;
@@ -15,7 +16,6 @@ import Entidades.Shoryu;
 import Entidades.Zero;
 import Premios.BlackPOW;
 import Premios.GrayPOW;
-import Premios.GreenPOW;
 import Premios.OrangePOW;
 import Premios.RedPOW;
 
@@ -28,6 +28,10 @@ public abstract class Visitor {
 
 	public void visit(Jugador jugador) {
 	
+	}
+	
+	public void visit(AvionLateral avion) {
+		
 	}
 
 	public void visit(Qing qing) {
@@ -62,10 +66,6 @@ public abstract class Visitor {
 		
 	}
 
-	public void visit(GreenPOW greenPOW) {
-		
-	}
-
 	public void visit(GrayPOW grayPOW) {
 		
 	}
@@ -91,7 +91,6 @@ public abstract class Visitor {
 	}
 
 	public void visit(Planeta planeta) {
-		// TODO Auto-generated method stub
 		
 	}
 }

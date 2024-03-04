@@ -77,7 +77,7 @@ public class Jugador extends Entidad {
 					restandoVida = true;
 					estado_jugador.decrementarVidaJugador();
 				}
-			}else{
+			}else{ 
 				estado_jugador.decrementarVidaJugador();
 
 				if (vidas <= 0) {
@@ -85,13 +85,6 @@ public class Jugador extends Entidad {
 					juego.perdio();
 				}
 			}
-		}
-		
-		estado_jugador.decrementarVidaJugador();
-
-		if (vidas <= 0) {
-			juego.eliminarEntidad(this);
-			juego.perdio();
 		}
 	}
 

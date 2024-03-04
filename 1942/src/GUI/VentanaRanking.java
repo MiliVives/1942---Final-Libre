@@ -28,7 +28,7 @@ public class VentanaRanking extends JFrame{
 	public VentanaRanking(Disposable parent) {
 		padre = parent;
 		this.setResizable(false);
-		setIconImage(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/icon.png")).getImage());
+		setIconImage(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/icon.jpg")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 700);
 		JPanel contentPane = new JPanel();

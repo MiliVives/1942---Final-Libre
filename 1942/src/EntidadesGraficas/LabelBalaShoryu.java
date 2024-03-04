@@ -9,7 +9,7 @@ public class LabelBalaShoryu extends LabelBala {
 
 	public LabelBalaShoryu(Point p) {
 		super(p);
-		ImageIcon imagen = new ImageIcon(getClass().getResource("/RecursosGraficos_Enemigos/BalaBasicaI.png"));
+		ImageIcon imagen = new ImageIcon(getClass().getResource("/RecursosGraficos_Enemigos/BalaBasica1.png"));
 		this.setIcon(imagen);
 		reDimensionar(this, imagen);
 	}
