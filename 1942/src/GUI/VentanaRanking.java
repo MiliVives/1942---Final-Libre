@@ -84,7 +84,7 @@ public class VentanaRanking extends JFrame{
 		gbcHeaders.gridx = 2;
 		labelsPanel.add(headerPuntaje, gbcHeaders);
 
-		Ranking rangos_actuales = new Ranking("src/Ranking.txt");
+		Ranking rangos_actuales = new Ranking("src/ArchivosDeTexto/Ranking.txt");
 
 		for (int i = 0; i < 5; i++) {
 		    int j = i + 1;

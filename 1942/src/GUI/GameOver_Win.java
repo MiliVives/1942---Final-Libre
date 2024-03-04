@@ -23,7 +23,7 @@ public class GameOver_Win extends JFrame implements Disposable{
 
 	public GameOver_Win(int p, int puntaje, GUI gui) {// si es 1 entonces gano, 0 caso contrario 
 		
-		ranking = new Ranking("src/Ranking.txt");
+		ranking = new Ranking("src/ArchivosDeTexto/Ranking.txt");
 		setIconImage(new ImageIcon(getClass().getResource("/RecursosGraficos_Extras/icon.jpg")).getImage());
 		
 		this.setResizable(false);

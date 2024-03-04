@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -77,7 +78,9 @@ public class Ranking {
     }
 
     private void loadRanking() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+    	try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+                getClass().getResourceAsStream("/ArchivosDeTexto/Ranking.txt")))) {
+
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(" - ");
