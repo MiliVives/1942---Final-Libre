@@ -2,10 +2,10 @@ package Logica;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,8 +36,8 @@ public class Ranking {
     private List<Player> players;
     private String fileName;
 
-    public Ranking(String fileName) {
-        this.fileName = fileName;
+    public Ranking() {
+        fileName = System.getProperty("user.dir")+("/Ranking.txt");
         players = new ArrayList<>(5);
         loadRanking();
     }
@@ -78,9 +78,16 @@ public class Ranking {
     }
 
     private void loadRanking() {
-    	try (BufferedReader reader = new BufferedReader(new InputStreamReader(
-                getClass().getResourceAsStream("/ArchivosDeTexto/Ranking.txt")))) {
-
+    	File file = new File(fileName);
+    	try {
+			if(file.createNewFile()) {
+				createDummyPlayers();
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+    	
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(" - ");
@@ -100,6 +107,17 @@ public class Ranking {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (Player player : players) {
                 writer.write(player.getName() + " - " + player.getScore());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void createDummyPlayers() {
+    	try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+    		for (int i = 0; i < 5; i++) {
+                writer.write("Player" + i + " - " + (i * 100));  
                 writer.newLine();
             }
         } catch (IOException e) {
